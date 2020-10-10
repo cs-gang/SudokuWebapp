@@ -1,0 +1,49 @@
+h1{
+    padding-top: 5%;
+    text-align: center;
+    font-size: 100px;
+    font-weight: 100;
+    position: relative;
+    top: 60px;
+}
+
+.hr-top{
+    position: fixed;
+    top: 0px;
+    width: 1330px;
+    border: 10px solid green;
+    border-radius: 60%;
+}
+
+.hr-bottom{
+    position: fixed;
+    bottom: 0px;
+    left: 425px;
+    width: 500px;
+    border: 8px solid green;
+    border-radius: 60%;
+}
+
+.buttons{
+    margin: auto;
+    width: 200px;
+    padding-top: 50px;
+    display: grid;
+    grid-template-columns: 80px 80px;
+    grid-template-rows: 80px 80px;
+    grid-template-areas: 
+    "start start"
+    "leaderboard aboutus";
+    column-gap: 10px;
+    row-gap: 10px;
+    
+}
+
+#StartButton{
+    grid-area: start;
+}
+#LeaderBoardButton{
+    grid-area: leaderboard;
+}
+#AboutUsButton{
+    grid-area: aboutus;
