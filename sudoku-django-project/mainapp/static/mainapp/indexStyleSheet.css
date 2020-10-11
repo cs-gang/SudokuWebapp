@@ -41,10 +41,41 @@ h1{
 
 #StartButton{
     grid-area: start;
+    font-size: 0%;
+    position: relative;
+    overflow: hidden;
 }
+
 #LeaderBoardButton{
     grid-area: leaderboard;
+    font-size: 100%;
+    color: whitesmoke;
+    background-color: darkgreen;
+    position: relative;
+    overflow: hidden;
 }
+#LeaderBoardButton::after{
+    content:"";
+    position: absolute;
+    background-color: rgb(240,240,240);
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+#LeaderBoardButton:hover::after{
+    transition-duration: 0.5s;
+    height: 0%;
+    width: 0%;
+}
+
 #AboutUsButton{
     grid-area: aboutus;
+    font-size: 0%;
+}
+#AboutUsButton:hover{
+    background-color: darkgreen;
+    font-size: 100%;
+    color: whitesmoke
 }
