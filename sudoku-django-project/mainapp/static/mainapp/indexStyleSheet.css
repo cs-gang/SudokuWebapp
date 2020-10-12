@@ -45,8 +45,19 @@ h1{
     position: relative;
     background-color: darkgreen;
     color: whitesmoke;
-    overflow: hidden;
 }
+#StartButton::before{
+    content: "";
+    position: absolute;
+    background-color: grey;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+
+}
+/*
 #StartButton::after{
     content: "";
     position: absolute;
@@ -56,14 +67,25 @@ h1{
     z-index: 1;
     height: 130%;
     width: 100%;
+}*/
+#StartButton:hover{
+    bottom: 10px;
 }
-
+#StartButton:hover::before{
+    top: 10;
+}
+/*
 #StartButton:hover::after{
     transition-duration: 0.60s;
     height: 0%;
+}*/
 
+#StartButton:active{
+    bottom: 0px;
 }
-
+#StartButton:active::before{
+    top: 0;
+}
 #LeaderBoardButton{
     grid-area: leaderboard;
     color: whitesmoke;
