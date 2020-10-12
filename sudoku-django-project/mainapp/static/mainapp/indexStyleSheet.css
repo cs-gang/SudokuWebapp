@@ -45,48 +45,61 @@ h1{
     position: relative;
     background-color: darkgreen;
     color: whitesmoke;
-    overflow: hidden;
 }
-#StartButton::after{
+#StartButton::before{
     content: "";
     position: absolute;
-    background-color: rgb(240,240,240);
-    top: -10;
+    background-color: grey;
+    top: 0;
     left: 0;
-    z-index: 1;
-    height: 130%;
+    height: 100%;
     width: 100%;
+    z-index: -1;
 }
 
-#StartButton:hover::after{
-    transition-duration: 0.60s;
-    height: 0%;
-
+#StartButton:hover{
+    bottom: 10px;
+}
+#StartButton:hover::before{
+    top: 10;
 }
 
+#StartButton:active{
+    bottom: 0px;
+}
+#StartButton:active::before{
+    top: 0;
+}
 #LeaderBoardButton{
     grid-area: leaderboard;
     color: whitesmoke;
     background-color: darkgreen;
     position: relative;
-    overflow: hidden;
 }
-#LeaderBoardButton::after{
-    content:"";
+
+#LeaderBoardButton::before{
+    content: "";
     position: absolute;
-    background-color: rgb(240,240,240);
-    left: 0px;
-    top: 0px;
-    z-index: 1;
-    width: 300%;
-    height: 300%;
-    top: -70px;
-    left: -70px;
-    transform: rotate(-45deg);
+    background-color: grey;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
 }
-#LeaderBoardButton:hover::after{
-    transition-duration: 0.75s;
-    height: 0%;
+
+#LeaderBoardButton:hover{
+    bottom: 10px;
+}
+#LeaderBoardButton:hover::before{
+    top: 10;
+}
+
+#LeaderBoardButton:active{
+    bottom: 0px;
+}
+#LeaderBoardButton:active::before{
+    top: 0;
 }
 
 #AboutUsButton{
@@ -94,22 +107,30 @@ h1{
     color: whitesmoke;
     position: relative;
     background-color: darkgreen;
-    overflow: hidden;
 }
-#AboutUsButton::after{
-    content:"";
+
+#AboutUsButton::before{
+    content: "";
     position: absolute;
-    background-color: rgb(240,240,240);
-    left: 0px;
-    top: 0px;
-    z-index: 1;
-    width: 300%;
-    height: 300%;
-    top: -70px;
-    left: -70px;
-    transform: rotate(45deg);
+    background-color: grey;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
 }
-#AboutUsButton:hover::after{
-    transition-duration: 0.75s;
-    height: 0%;
+
+#AboutUsButton:hover{
+    bottom: 10px;
 }
+#AboutUsButton:hover::before{
+    top: 10;
+}
+
+#AboutUsButton:active{
+    bottom: 0px;
+}
+#AboutUsButton:active::before{
+    top: 0;
+}
+
