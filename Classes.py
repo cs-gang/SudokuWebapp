@@ -1,29 +1,3 @@
-'''
-                            HOW TO USE THIS SUDOKU CLASS.
-This consists of 3 classes :-
-1. Sudoku class - The main sudoku class. This is the object you'll mostly be interacting with.
-2. _Box class - The 3x3 box inside a sudoku. You'll be accessing it mostly through the sudoku object with indexing.
-3. _Element class - The number inside a box. You'll be accessing it mostly through the box object that you access with the sudoku object.
-Methods to use ->
-1. sudokuobject.get_column(index) -> This returns the column in the form of a list of values according to the index you send in.
-note: This contains directly the values of the elements
-2. sudokuobject.get_row(index) -> This returns the row in the form of a list of values according to the index you send in.
-note: This contains directly the values of the elements
-3. _elementobject.get_value() -> This returns the actual value held by the object.
-You'll mostly have to sue this when accessing it through indexing.
-4. _elementobject.set_value() -> This allows you to change the value an element is holding.
-Functionality of the objects ->
-Sudoku -> 1. for i in sudoku:
-          2. sudoku[0] - returns a box
-_Box -> 1. for i in box:
-        2. box[0] - returns an element
-        3. box[0] = 2
-        4. len(box)
-Read through the documentation in the code too, it'll give you a better idea.
-                                        END                                   
-'''
-
-import random
 from random import shuffle
 
 
@@ -308,33 +282,3 @@ class _Element:
     def set_value(self, value):  # To access the value this element will have.
         self._value = value
 
-
-"""
-=============================================================================
-
-                                Testing
-
-=============================================================================
-"""
-
-'''                      Initializing the sudoku generator!                        '''
-
-Test = Sudoku()
-
-Test.initial_puzzle()
-
-Test.print_board()
-
-Test.generator()
-
-Test.print_board()
-
-"""
-l = []
-for h in range(0, 9):
-    l.append(list(map(_Element.get_value, Test.get_row(h))))
-print(l)
-
-l1 = [list(map(_Element.get_value, i)) for i in Test.get_all_rows()]
-print(l1)
-"""
