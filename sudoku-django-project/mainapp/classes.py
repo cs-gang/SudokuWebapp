@@ -6,12 +6,14 @@ BoardType = typing.List[typing.List[typing.Union[None, int]]]    # type hint ali
 class Sudoku:
     """" A class that acts like a sudoku puzzle. """
 
-    def __init__(self):    #noqa: ANN204
-        self.top_boxes = [_Box() for i in range(3)]
-        self.mid_boxes = [_Box() for i in range(3)]
-        self.bottom_boxes = [_Box() for i in range(3)]
+    def __init__(self):  # noqa: ANN204
+        self.top_boxes = [_Box() for _ in range(3)]
+        self.mid_boxes = [_Box() for _ in range(3)]
+        self.bottom_boxes = [_Box() for _ in range(3)]
 
         self._set_box_locations()
+
+        self.generator()
 
     # Methods run at initialization.
     def _set_box_locations(self) -> None:  # Sets each of the box's position attribute.
@@ -49,66 +51,22 @@ class Sudoku:
             element_index += 1
         return row
 
-    def get_column(self, index: int) -> list:  # returns column in the form of
-        box_index = index // 3  # a list. Indexing from 0-8 from
-        element_index = index % 3  # left to right.
-        column = []
-        for i in range(9):
-            if i % 3 == 0 and i > 1:
-                box_index += 3
-                element_index -= 9
-            element = self[box_index][element_index]
-            column.append(element)  # appends value of the element.
-            element_index += 3
-        return column
-
-    def get_row(self, index: int) -> list:  # returns row in the form of a list.
-        box_index = (index // 3) * 3  # Indexing from 0-8 from top to bottom
-        element_index = index % 3 * 3
-        row = []
-        for i in range(9):
-            if i % 3 == 0 and i > 1:
-                box_index += 1
-                element_index -= 3
-            element = self[box_index][element_index]
-            row.append(element)
-            element_index += 1
-        return row
-
-    def get_all_columns(self) -> list:  # Returns a list of all the columns.
-        columns = []
-        for i in range(9):
-            columns.append(self.get_column(i))
-        return columns
-
-    def get_all_rows(self) -> list:  # Return a list of all the rows.
+    def get_all_row_values(self) -> list:  # Return a list of all the rows.
         rows = []
         for i in range(9):
-            row = self.get_row(i)
+            row = self.get_row_values(i)
             rows.append(row)
         return rows
 
-    def get_indices(self, val: int) -> typing.List[typing.Tuple]:  # returns index of element in all boxes.
-        box_index = 0  # the indexes are in the form of a tuple
-        indices = []  # first element of tuple is the box index
-        for box in self:  # second element of tuple is the element
-            if val in box:  # index.
-                indices.append((box_index, box.get_index(val)))
-            box_index += 1
-        return indices
-
     def possible_cell_values(self, box_no: int, element_no: int) -> list:
-
-        x_coord = (box_no % 3) * 3 + element_no % 3  # Conversion from [box][element]
-        y_coord = (box_no // 3) * 3 + element_no // 3
 
         element_possibility = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-        for col_value in self.get_column_values(x_coord):  # To remove the possibility of numbers
+        for col_value in self.get_column_values((box_no % 3) * 3 + element_no % 3):
             if col_value in element_possibility:  # Reoccurring in the same column
                 element_possibility.remove(col_value)
 
-        for row_value in self.get_row_values(y_coord):  # To remove the possibility of numbers
+        for row_value in self.get_row_values((box_no // 3) * 3 + element_no // 3):
             if row_value in element_possibility:  # Reoccurring in the same row
                 element_possibility.remove(row_value)
 
@@ -120,58 +78,45 @@ class Sudoku:
 
     def generator(self) -> None:
 
-        if not Sudoku[0][0]:
-            self.initial_puzzle()
+        shuffled = []
 
-        shuffled_rows = []
+        original = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
+                    [4, 5, 6, 7, 8, 9, 1, 2, 3],
+                    [7, 8, 9, 1, 2, 3, 4, 5, 6],
+                    [2, 3, 1, 5, 6, 4, 8, 9, 7],
+                    [5, 6, 4, 8, 9, 7, 2, 3, 1],
+                    [8, 9, 7, 2, 3, 1, 5, 6, 4],
+                    [3, 1, 2, 6, 4, 5, 9, 7, 8],
+                    [6, 4, 5, 9, 7, 8, 3, 1, 2],
+                    [9, 7, 8, 3, 1, 2, 6, 4, 5]]
 
         for i in range(3):
-            row1 = self.get_row_values(i * 3)
-            row2 = self.get_row_values((i * 3) + 1)
-            row3 = self.get_row_values((i * 3) + 2)
-            rows = shuffle([row1, row2, row3])
+            rows = [original[i * 3], original[(i * 3) + 1], original[(i * 3) + 2]]
 
-            shuffled_rows.extend(rows)
+            shuffle(rows)
+            shuffled.extend(rows)
 
-        self.initial_puzzle(shuffled_rows)
+        self.set_value_of_grid(shuffled, "row")
+        shuffled = []
 
-    def initial_puzzle(self, inp: BoardType=None) -> None:
+        for i in range(3):
+            cols = [self.get_row_values(i * 3), self.get_row_values((i * 3) + 1), self.get_row_values((i * 3) + 2)]
 
-        if inp is None:
-            list_val = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
-                        [4, 5, 6, 7, 8, 9, 1, 2, 3],
-                        [7, 8, 9, 1, 2, 3, 4, 5, 6],
-                        [2, 3, 1, 5, 6, 4, 8, 9, 7],
-                        [5, 6, 4, 8, 9, 7, 2, 3, 1],
-                        [8, 9, 7, 2, 3, 1, 5, 6, 4],
-                        [3, 1, 2, 6, 4, 5, 9, 7, 8],
-                        [6, 4, 5, 9, 7, 8, 3, 1, 2],
-                        [9, 7, 8, 3, 1, 2, 6, 4, 5]]
-        else:
-            list_val = inp
+            shuffle(cols)
+            shuffled.extend(cols)
 
-        for box in range(9):
-            for element in range(9):
-                self[box][element].set_value(list_val[(box // 3) * 3 + element // 3][(box % 3) * 3 + element % 3])
+        self.set_value_of_grid(shuffled, "col")
 
-    def print_board(self) -> None:
-        for w in range(0, 3):  # This is for temporary display
-            co1 = 3 * w  # factor to print rows of boxes
-            print("\n+=======================+", end="")
-            for z in range(0, 3):
-                co2 = 3 * z  # factor to print rows of values
-                print("")
-                for l in range(0, 3):  # To print first 3 boxes
-                    for m in range(0, 3):  # To print first 3 element of a box, i.e., completing a row
-                        if m == 0 and l == 0:
-                            print("| ", end="")
-                        if self[l + co1][m + co2].get_value() != None:
-                            print(f"{self[l + co1][m + co2].get_value()} ", end="")
-                        else:
-                            print("  ", end="")
-                        if m == 2:
-                            print("| ", end="")
-        print("\n+=======================+")
+    def set_value_of_grid(self, list_val: list, index_type: str) -> None:
+
+        if index_type == "row":
+            for box in range(9):
+                for element in range(9):
+                    self[box][element].set_value(list_val[(box // 3) * 3 + element // 3][(box % 3) * 3 + element % 3])
+        elif index_type == "col":
+            for box in range(9):
+                for element in range(9):
+                    self[box][element].set_value(list_val[(box % 3) * 3 + element % 3][(box // 3) * 3 + element // 3])
 
     # operator overloading methods.
     def __iter__(self):  # noqa: ANN204
@@ -199,10 +144,10 @@ class Sudoku:
 class _Box:
     """ A class that acts like one of the nine 3x3 boxes in sudoku. """
 
-    def __init__(self):   # noqa: ANN204
-        self.top_row = [_Element() for i in range(3)]
-        self.mid_row = [_Element() for i in range(3)]
-        self.bottom_row = [_Element() for i in range(3)]
+    def __init__(self):  # noqa: ANN204
+        self.top_row = [_Element() for _ in range(3)]
+        self.mid_row = [_Element() for _ in range(3)]
+        self.bottom_row = [_Element() for _ in range(3)]
         self.box_pos = None  # NOT USED
 
         self.set_element_box()
@@ -220,14 +165,6 @@ class _Box:
             element._row = self.mid_row
         for element in self.bottom_row:
             element._row = self.bottom_row
-
-
-    def get_index(self, val: int) -> int:  # Returns the index of an element.
-        count = 0
-        for i in self:
-            if i.get_value() == val:
-                return count
-            count += 1
 
     # Operator overloading methods
     def __iter__(self):  # noqa: ANN204
@@ -260,7 +197,7 @@ class _Box:
 
 
 class _Element:
-    ''' A class that acts as the element(number) in one of the boxes of sudoku. '''
+    """ A class that acts as the element(number) in one of the boxes of sudoku. """
 
     def __init__(self, value=None):   # noqa: ANN204
         self._box = None  # The box this element belongs to.   #NOT USED
