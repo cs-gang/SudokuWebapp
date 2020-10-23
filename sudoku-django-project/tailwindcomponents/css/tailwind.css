@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
+
+@layer base{
+    @font-face{
+        font-family: 'futurist';
+        src: url(../fonts/FUTRFW.TTF) format('truetype');
+    }
+}
+
+@layer base{
+    .mainfont{
+        font-family: futurist;
+    }
+}
+
 @tailwind utilities;

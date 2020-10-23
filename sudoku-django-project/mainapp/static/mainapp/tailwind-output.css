@@ -586,6 +586,16 @@ video {
   height: auto;
 }
 
+@font-face{
+  font-family: 'futurist';
+
+  src: url(../fonts/FUTRFW.TTF) format('truetype');
+}
+
+.mainfont{
+  font-family: futurist;
+}
+
 .container {
   width: 100%;
 }
