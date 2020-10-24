@@ -8,10 +8,12 @@ module.exports = {
     extend: {
     },
   },
-  variants: {},
+  variants: {
+    backgroundColor: ['responsive', 'focus', 'hover', 'active']
+  },
   plugins: [],
   purge: {
-    enabled: true,
+    enabled: false,
     content: ['../your-django-folder/path-to-your-templates/**/*.html'],
   },
 }
