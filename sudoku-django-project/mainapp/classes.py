@@ -1,4 +1,4 @@
-from random import shuffle
+from random import shuffle, randint
 import typing
 
 BoardType = typing.List[typing.List[typing.Union[None, int]]]    # type hint alias for board - a list of lists
@@ -7,13 +7,26 @@ class Sudoku:
     """" A class that acts like a sudoku puzzle. """
 
     def __init__(self):  # noqa: ANN204
+        self.counter = 1
         self.top_boxes = [_Box() for _ in range(3)]
         self.mid_boxes = [_Box() for _ in range(3)]
         self.bottom_boxes = [_Box() for _ in range(3)]
 
         self._set_box_locations()
 
+        self.original = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
+                         [4, 5, 6, 7, 8, 9, 1, 2, 3],
+                         [7, 8, 9, 1, 2, 3, 4, 5, 6],
+                         [2, 3, 1, 5, 6, 4, 8, 9, 7],
+                         [5, 6, 4, 8, 9, 7, 2, 3, 1],
+                         [8, 9, 7, 2, 3, 1, 5, 6, 4],
+                         [3, 1, 2, 6, 4, 5, 9, 7, 8],
+                         [6, 4, 5, 9, 7, 8, 3, 1, 2],
+                         [9, 7, 8, 3, 1, 2, 6, 4, 5]]
+
         self.generator()
+        self.full_board = self.get_all_row_values()
+        self.puzzle_maker()
 
     # Methods run at initialization.
     def _set_box_locations(self) -> None:  # Sets each of the box's position attribute.
@@ -58,40 +71,38 @@ class Sudoku:
             rows.append(row)
         return rows
 
-    def possible_cell_values(self, box_no: int, element_no: int) -> list:
+    def possible_cell_values(self, row: int, col: int) -> list:
 
         element_possibility = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-        for col_value in self.get_column_values((box_no % 3) * 3 + element_no % 3):
+        for col_value in self.get_column_values(col):
             if col_value in element_possibility:  # Reoccurring in the same column
                 element_possibility.remove(col_value)
 
-        for row_value in self.get_row_values((box_no // 3) * 3 + element_no // 3):
+        for row_value in self.get_row_values(row):
             if row_value in element_possibility:  # Reoccurring in the same row
                 element_possibility.remove(row_value)
 
         for m in element_possibility:
-            if m in [self[box_no][n].get_value() for n in range(9)]:
+            if m in [self[(row // 3) * 3 + col // 3][n].get_value() for n in range(9)]:
                 element_possibility.remove(m)
 
         return element_possibility
+
+    @staticmethod
+    def check_complete(grid: list) -> bool:
+        for i in grid:
+            for x in i:
+                if x == 0:
+                    return False
+        return True
 
     def generator(self) -> None:
 
         shuffled = []
 
-        original = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
-                    [4, 5, 6, 7, 8, 9, 1, 2, 3],
-                    [7, 8, 9, 1, 2, 3, 4, 5, 6],
-                    [2, 3, 1, 5, 6, 4, 8, 9, 7],
-                    [5, 6, 4, 8, 9, 7, 2, 3, 1],
-                    [8, 9, 7, 2, 3, 1, 5, 6, 4],
-                    [3, 1, 2, 6, 4, 5, 9, 7, 8],
-                    [6, 4, 5, 9, 7, 8, 3, 1, 2],
-                    [9, 7, 8, 3, 1, 2, 6, 4, 5]]
-
         for i in range(3):
-            rows = [original[i * 3], original[(i * 3) + 1], original[(i * 3) + 2]]
+            rows = [self.original[i * 3], self.original[(i * 3) + 1], self.original[(i * 3) + 2]]
 
             shuffle(rows)
             shuffled.extend(rows)
@@ -117,6 +128,58 @@ class Sudoku:
             for box in range(9):
                 for element in range(9):
                     self[box][element].set_value(list_val[(box % 3) * 3 + element % 3][(box // 3) * 3 + element // 3])
+
+    def unique_sol_check(self, grid: list) -> bool:
+
+        # Recursive method to check whether there is a unique solution for a number removed from grid
+        for i in range(81):
+
+            row = i // 9
+            col = i % 9
+
+            if grid[row][col] == 0:
+                for value in range(10):
+                    if value in self.possible_cell_values(row, col):
+                        grid[row][col] = value
+                        self.set_value_of_grid(grid, "row")
+                        if self.check_complete(grid):
+                            self.counter += 1
+                            break
+                        else:
+                            if self.unique_sol_check(grid):
+                                return True
+                break
+        grid[row][col] = 0
+        self.set_value_of_grid(grid, "row")
+
+    def puzzle_maker(self) -> None:
+
+        # adds spaces to the finished board
+        attempts = 5
+        while attempts > 0:
+            row = randint(0, 8)
+            col = randint(0, 8)
+            while self[row][col].get_value() == 0:
+                row = randint(0, 8)
+                col = randint(0, 8)
+            backup = self[row][col].get_value()
+            self[row][col].set_value(0)
+
+            copy = self.get_all_row_values()
+
+            self.counter = 0
+            self.unique_sol_check(copy)
+
+            if self.counter != 1:
+                self[row][col].set_value(backup)
+                attempts -= 1
+
+    def check(self, user_input: list) -> bool or list:
+
+        if user_input == self.full_board:
+            return True
+        else:
+            return [[True if self.full_board[row][col] == user_input[row][col] else False for col in range(9)] for row in range(9)]
 
     # operator overloading methods.
     def __iter__(self):  # noqa: ANN204
