@@ -596,6 +596,31 @@ video {
   font-family: futurist;
 }
 
+.typeanime{
+  -webkit-animation: type 2s steps(60, end);
+          animation: type 2s steps(60, end);
+}
+
+@-webkit-keyframes type{
+  0%{
+    width: 0;
+  }
+
+  100%{
+    width: 100;
+  }
+}
+
+@keyframes type{
+  0%{
+    width: 0;
+  }
+
+  100%{
+    width: 100;
+  }
+}
+
 .container {
   width: 100%;
 }
@@ -22183,6 +22208,16 @@ video {
   }
 }
 
+@keyframes type {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
 .animate-none {
   -webkit-animation: none;
           animation: none;
@@ -22206,6 +22241,11 @@ video {
 .animate-bounce {
   -webkit-animation: bounce 1s infinite;
           animation: bounce 1s infinite;
+}
+
+.animate-typeanim {
+  -webkit-animation: type 4s steps(60, end);
+          animation: type 4s steps(60, end);
 }
 
 @media (min-width: 640px) {
@@ -43753,6 +43793,11 @@ video {
   .sm\:animate-bounce {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
+  }
+
+  .sm\:animate-typeanim {
+    -webkit-animation: type 4s steps(60, end);
+            animation: type 4s steps(60, end);
   }
 }
 
@@ -65302,6 +65347,11 @@ video {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
+
+  .md\:animate-typeanim {
+    -webkit-animation: type 4s steps(60, end);
+            animation: type 4s steps(60, end);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -86850,6 +86900,11 @@ video {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
+
+  .lg\:animate-typeanim {
+    -webkit-animation: type 4s steps(60, end);
+            animation: type 4s steps(60, end);
+  }
 }
 
 @media (min-width: 1280px) {
@@ -108397,5 +108452,10 @@ video {
   .xl\:animate-bounce {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
+  }
+
+  .xl\:animate-typeanim {
+    -webkit-animation: type 4s steps(60, end);
+            animation: type 4s steps(60, end);
   }
 }

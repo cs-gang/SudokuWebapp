@@ -6,12 +6,24 @@
         font-family: 'futurist';
         src: url(../fonts/FUTRFW.TTF) format('truetype');
     }
-}
 
-@layer base{
     .mainfont{
         font-family: futurist;
     }
+
+    .typeanime{
+        animation: type 2s steps(60, end);
+      }
+    
+      @keyframes type{
+        0%{
+          width: 0;
+        }
+        100%{
+          width: 100;
+        }
+      }
 }
+
 
 @tailwind utilities;

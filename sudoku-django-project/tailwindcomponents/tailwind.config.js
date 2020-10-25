@@ -6,6 +6,15 @@ module.exports = {
   purge: [],
   theme: {
     extend: {
+      keyframes:{
+        type: {
+          '0%': {width: '0%'},
+          '100%': {width: '100%'},
+        }
+      },
+      animation:{
+        typeanim: 'type 4s steps(60, end)'
+      }
     },
   },
   variants: {
