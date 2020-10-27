@@ -190,7 +190,7 @@ class Sudoku:
         for i in self.bottom_boxes:
             yield i
 
-    def __getitem__(self, index):  # noqa: ANN204
+    def __getitem__(self, index: int):  # noqa: ANN204
         count = 0  # returns box object at index 3
         for i in self:
             if count == index:
@@ -262,7 +262,7 @@ class _Box:
 class _Element:
     """ A class that acts as the element(number) in one of the boxes of sudoku. """
 
-    def __init__(self, value=None):   # noqa: ANN204
+    def __init__(self, value: typing.Optional[int]=None):   # noqa: ANN204
         self._box = None  # The box this element belongs to.   #NOT USED
         self._row = None  # The row this element belongs to.   #NOT USED
         self._value = value  # The value the element has.
