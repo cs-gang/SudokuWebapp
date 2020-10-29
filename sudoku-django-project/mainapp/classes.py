@@ -71,6 +71,7 @@ class Sudoku:
             rows.append(row)
         return rows
 
+    # Puzzle-Generation methods
     def possible_cell_values(self, row: int, col: int) -> list:
 
         element_possibility = [1, 2, 3, 4, 5, 6, 7, 8, 9]
