@@ -135,4 +135,4 @@ dmypy.json
 *.cnf
 
 #CSS file
-tailwind-output.css
+.\sudoku-django-project\mainapp\static\mainapp\tailwind-output.css
