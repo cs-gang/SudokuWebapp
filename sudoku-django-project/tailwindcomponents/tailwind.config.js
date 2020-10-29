@@ -10,10 +10,28 @@ module.exports = {
         type: {
           '0%': {width: '0%'},
           '100%': {width: '100%'},
+        },
+        falling:{
+          '0%':{
+              transform: "translateY(-315px);",
+              'animation-timing-function': 'ease-in;'
+          },
+          '15%':{
+              transform: 'translateY(0);',
+              'animation-timing-function': 'ease-out;'
+          },
+          '19%':{
+              transform: 'translateY(-30px);',
+              'animation-timing-function': 'ease-in;'
+          },
+          '26%':{
+              transform: 'translateY(0);'
+          }
         }
       },
       animation:{
-        typeanim: 'type 4s steps(60, end)'
+        typeanim: 'type 4s steps(100, end)',
+        fall: 'falling 3s linear'
       }
     },
   },

@@ -2,13 +2,41 @@
 @tailwind components;
 
 @layer base{
+
     @font-face{
         font-family: 'futurist';
         src: url(../fonts/FUTRFW.TTF) format('truetype');
     }
 
+    @font-face{
+      font-family: 'cutivemono';
+      src: url(../fonts/CutiveMono-Regular.ttf) format('truetype');
+    }
+
+    @font-face{
+      font-family: 'novamono';
+      src: url(../fonts/NovaMono-Regular.ttf) format('truetype');
+    }
+
+    @font-face{
+      font-family: 'ubuntumono';
+      src: url(../fonts/UbuntuMono-Regular.ttf) format('truetype');
+    }
+
     .mainfont{
         font-family: futurist;
+    }
+
+    .subfont-cumono{
+      font-family: cutivemono;
+    }
+
+    .subfont-nomono{
+      font-family: novamono;
+    }
+
+    .subfont-ubmono{
+      font-family: ubuntumono;
     }
 
     .typeanime{
