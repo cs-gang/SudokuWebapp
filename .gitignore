@@ -133,3 +133,6 @@ dmypy.json
 
 #MySQL config file
 *.cnf
+
+#CSS file
+tailwind-output.css
