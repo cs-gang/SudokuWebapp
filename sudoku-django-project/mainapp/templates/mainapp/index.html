@@ -1,20 +1,19 @@
 <!DOCTYPE HTML5>
 {% load static %}
+
 <html>
     <head>
         <title>Sudoku Web</title>
-        <link href="{% static "mainapp/indexStyleSheet.css"%}" rel="stylesheet" type="text/css">
+        <link href="{% static "mainapp/tailwind-output.css"%}" rel="stylesheet" type="text/css">
     </head>
-    
-    <body>
-        <hr class="hr-top">
-        <h1>Sudoku Webapp</h1>
-        <div class="buttons">
-            <button id="StartButton">Start Button</button>
-            <button id="LeaderBoardButton">Leader Board</button>
-            <button id="AboutUsButton">About Us</button>
+    <body class="h-24 bg-gradient-to-b from-teal-300 to-blue-700">
+        <div class='transform m-auto animate-fall'>
+            <h2 class="mainfont text-6xl text-center text-white pt-40 bold overflow-hidden m-auto animate-pulse"> SUDOKU </h2>
         </div>
-        <hr class="hr-bottom">
+        
+        <div class="flex flex-col items-center pt-16">
+            <a href="#" class="transform text-4xl bg-gray-300 active:bg-gray-500 pl-4 pb-1 pr-4 rounded hover:scale-105 shadow-xl opacity-75 hover:opacity-100 subfont-cumono">START GAME</a>
+            <a href="#" class="transform text-2xl bg-gray-300 active:bg-gray-500 pl-4 pr-4 pt-1 pb-1 mt-6 rounded hover:scale-105 shadow-xl opacity-75 hover:opacity-100 subfont-cumono">LEADER BOARD</a>
+        </div>
     </body>
-
 </html>

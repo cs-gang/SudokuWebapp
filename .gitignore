@@ -133,3 +133,6 @@ dmypy.json
 
 #MySQL config file
 *.cnf
+
+#CSS file
+sudoku-django-project/mainapp/static/mainapp/tailwind-output.css

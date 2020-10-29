@@ -5,12 +5,42 @@ module.exports = {
   },
   purge: [],
   theme: {
-    extend: {},
+    extend: {
+      keyframes:{
+        type: {
+          '0%': {width: '0%'},
+          '100%': {width: '100%'},
+        },
+        falling:{
+          '0%':{
+              transform: "translateY(-315px);",
+              'animation-timing-function': 'ease-in;'
+          },
+          '15%':{
+              transform: 'translateY(0);',
+              'animation-timing-function': 'ease-out;'
+          },
+          '19%':{
+              transform: 'translateY(-30px);',
+              'animation-timing-function': 'ease-in;'
+          },
+          '26%':{
+              transform: 'translateY(0);'
+          }
+        }
+      },
+      animation:{
+        typeanim: 'type 4s steps(100, end)',
+        fall: 'falling 3s linear'
+      }
+    },
   },
-  variants: {},
+  variants: {
+    backgroundColor: ['responsive', 'focus', 'hover', 'active']
+  },
   plugins: [],
   purge: {
-    enabled: true,
+    enabled: false,
     content: ['../your-django-folder/path-to-your-templates/**/*.html'],
   },
 }
