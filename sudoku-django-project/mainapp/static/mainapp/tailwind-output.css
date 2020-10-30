@@ -592,8 +592,38 @@ video {
   src: url(../fonts/FUTRFW.TTF) format('truetype');
 }
 
+@font-face{
+  font-family: 'cutivemono';
+
+  src: url(../fonts/CutiveMono-Regular.ttf) format('truetype');
+}
+
+@font-face{
+  font-family: 'novamono';
+
+  src: url(../fonts/NovaMono-Regular.ttf) format('truetype');
+}
+
+@font-face{
+  font-family: 'ubuntumono';
+
+  src: url(../fonts/UbuntuMono-Regular.ttf) format('truetype');
+}
+
 .mainfont{
   font-family: futurist;
+}
+
+.subfont-cumono{
+  font-family: cutivemono;
+}
+
+.subfont-nomono{
+  font-family: novamono;
+}
+
+.subfont-ubmono{
+  font-family: ubuntumono;
 }
 
 .typeanime{
@@ -22218,6 +22248,54 @@ video {
   }
 }
 
+@-webkit-keyframes falling {
+  0% {
+    transform: translateY(-315px);;
+    -webkit-animation-timing-function: ease-in;;
+            animation-timing-function: ease-in;;
+  }
+
+  15% {
+    transform: translateY(0);;
+    -webkit-animation-timing-function: ease-out;;
+            animation-timing-function: ease-out;;
+  }
+
+  19% {
+    transform: translateY(-30px);;
+    -webkit-animation-timing-function: ease-in;;
+            animation-timing-function: ease-in;;
+  }
+
+  26% {
+    transform: translateY(0);;
+  }
+}
+
+@keyframes falling {
+  0% {
+    transform: translateY(-315px);;
+    -webkit-animation-timing-function: ease-in;;
+            animation-timing-function: ease-in;;
+  }
+
+  15% {
+    transform: translateY(0);;
+    -webkit-animation-timing-function: ease-out;;
+            animation-timing-function: ease-out;;
+  }
+
+  19% {
+    transform: translateY(-30px);;
+    -webkit-animation-timing-function: ease-in;;
+            animation-timing-function: ease-in;;
+  }
+
+  26% {
+    transform: translateY(0);;
+  }
+}
+
 .animate-none {
   -webkit-animation: none;
           animation: none;
@@ -22244,8 +22322,13 @@ video {
 }
 
 .animate-typeanim {
-  -webkit-animation: type 4s steps(60, end);
-          animation: type 4s steps(60, end);
+  -webkit-animation: type 4s steps(100, end);
+          animation: type 4s steps(100, end);
+}
+
+.animate-fall {
+  -webkit-animation: falling 3s linear;
+          animation: falling 3s linear;
 }
 
 @media (min-width: 640px) {
@@ -43796,8 +43879,13 @@ video {
   }
 
   .sm\:animate-typeanim {
-    -webkit-animation: type 4s steps(60, end);
-            animation: type 4s steps(60, end);
+    -webkit-animation: type 4s steps(100, end);
+            animation: type 4s steps(100, end);
+  }
+
+  .sm\:animate-fall {
+    -webkit-animation: falling 3s linear;
+            animation: falling 3s linear;
   }
 }
 
@@ -65349,8 +65437,13 @@ video {
   }
 
   .md\:animate-typeanim {
-    -webkit-animation: type 4s steps(60, end);
-            animation: type 4s steps(60, end);
+    -webkit-animation: type 4s steps(100, end);
+            animation: type 4s steps(100, end);
+  }
+
+  .md\:animate-fall {
+    -webkit-animation: falling 3s linear;
+            animation: falling 3s linear;
   }
 }
 
@@ -86902,8 +86995,13 @@ video {
   }
 
   .lg\:animate-typeanim {
-    -webkit-animation: type 4s steps(60, end);
-            animation: type 4s steps(60, end);
+    -webkit-animation: type 4s steps(100, end);
+            animation: type 4s steps(100, end);
+  }
+
+  .lg\:animate-fall {
+    -webkit-animation: falling 3s linear;
+            animation: falling 3s linear;
   }
 }
 
@@ -108455,7 +108553,12 @@ video {
   }
 
   .xl\:animate-typeanim {
-    -webkit-animation: type 4s steps(60, end);
-            animation: type 4s steps(60, end);
+    -webkit-animation: type 4s steps(100, end);
+            animation: type 4s steps(100, end);
+  }
+
+  .xl\:animate-fall {
+    -webkit-animation: falling 3s linear;
+            animation: falling 3s linear;
   }
 }
