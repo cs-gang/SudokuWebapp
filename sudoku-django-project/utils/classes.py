@@ -1,5 +1,6 @@
 from random import shuffle, randint
 import typing
+import exceptions
 
 BoardType = typing.List[typing.List[typing.Union[None, int]]]    # type hint alias for board - a list of lists
                                                                  # with int or None as values
@@ -282,3 +283,33 @@ class _Element:
 
     def set_value(self, value: typing.Union[int, None]) -> None:  # To access the value this element will have.
         self._value = value
+
+
+class BoardsQueue:
+    """FIFO queue containing upto {max_length} Sudoku boards at a time.
+    Front of the queue is the index 0, and the back is -1.
+    
+    Raises: QueueOverflowError -> on trying to insert into the queue beyong it's specified max_size
+            QueueUnderflowError -> on trying to get an item from the empty queue."""
+    def __init__(self, max_size: int=10):   # noqa: ANN204
+        self._queue = []
+        self.max_size = max_size
+        self.front, self.back = self._queue[0], self._queue[-1]
+
+    def enqueue(self, board: list) -> None:
+        if len(self._queue) > self.max_size:
+            raise exceptions.QueueOverflowError
+        
+        self._queue.append(board)
+
+    def dequeue(self) -> typing.Union[list, None]:
+        try:
+            out = self._queue.pop(0)
+        except IndexError:
+            raise exceptions.QueueUnderflowError
+
+        return out
+
+    
+
+
