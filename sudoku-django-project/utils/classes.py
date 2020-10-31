@@ -175,13 +175,14 @@ class Sudoku:
             if self.counter != 1:
                 self[row][col].set_value(backup)
                 attempts -= 1
+    
+    @staticmethod
+    def check(self, user_input: list, full_board: list) -> typing.Union[bool, list]:
 
-    def check(self, user_input: list) -> bool or list:
-
-        if user_input == self.full_board:
+        if user_input == full_board:
             return True
         else:
-            return [[True if self.full_board[row][col] == user_input[row][col] else False for col in range(9)] for row in range(9)]
+            return [[True if full_board[row][col] == user_input[row][col] else False for col in range(9)] for row in range(9)]
 
     # operator overloading methods.
     def __iter__(self):  # noqa: ANN204
