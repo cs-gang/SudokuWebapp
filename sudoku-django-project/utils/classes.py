@@ -291,7 +291,7 @@ class BoardsQueue:
     
     Raises: QueueOverflowError -> on trying to insert into the queue beyong it's specified max_size
             QueueUnderflowError -> on trying to get an item from the empty queue."""
-    def __init__(self, max_size: int=10):
+    def __init__(self, max_size: int=10):   # noqa: ANN204
         self._queue = []
         self.max_size = max_size
         self.front, self.back = self._queue[0], self._queue[-1]
