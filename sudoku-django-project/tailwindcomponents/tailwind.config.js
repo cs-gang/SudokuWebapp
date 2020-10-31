@@ -32,6 +32,11 @@ module.exports = {
       animation:{
         typeanim: 'type 4s steps(100, end)',
         fall: 'falling 3s linear'
+      },
+
+      spacing:{
+        rem20: '20rem',
+        rem28: '28rem'
       }
     },
   },

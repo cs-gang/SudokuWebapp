@@ -12,7 +12,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "postcss css/tailwind.css -o ../mainapp/static/mainapp/tailwind-output.css"
+    "build": "postcss css/tailwind.css -o ../mainapp/static/mainapp/tailwind-output.css",
+    "build-purge": "purgecss --css ../mainapp/static/mainapp/tailwind-output.css --content ../mainapp/templates/game.html ../mainapp/templates/index.html --output ../mainapp/static/mainapp/"
   },
   "author": "",
   "license": "ISC"
