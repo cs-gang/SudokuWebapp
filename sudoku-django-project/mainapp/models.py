@@ -1,11 +1,12 @@
 from django.db import models
+from typing import Union
 
 # Create your models here.
 class GameBoards(models.Model):
     # An autoincrementing ID column which will be used as primary key is automatically added.
     board = models.TextField(unique=True)
 
-    def __str__(self) -> typing.Union[str, int]:
+    def __str__(self) -> Union[str, int]:
         return self.id
 
 class Leaderboard(models.Model):
