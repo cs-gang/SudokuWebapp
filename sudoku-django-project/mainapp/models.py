@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class GameBoards(models.Model):
     # An autoincrementing ID column which will be used as primary key is automatically added.
-    board = models.TextField(unique=True)
+    board = models.TextField()
 
     def __str__(self):
         return self.board
