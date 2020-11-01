@@ -7,4 +7,4 @@ handlers:
 - url: /.*
   script: auto
 
-entrypoint: gunicorn -b :$PORT mainapp.wsgi
+entrypoint: gunicorn -b :$PORT sudoku.wsgi
