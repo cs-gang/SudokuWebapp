@@ -8,73 +8,67 @@
         </title>
         <link href="{% static "mainapp/tailwind-output.css"%}" rel="stylesheet" type="text/css">
     </head>
-    <body class="h-26 bg-gradient-to-b from-teal-300 to-blue-700">
-        <div class="my-10">
+    <body class="bg-gradient-to-b from-teal-300 to-blue-700">
+        <div class="my-20">
             <h1 class="mainfont text-6xl text-center text-white bold">LEADERBOARD</h1>
         </div>
-        <div class="bg-gray-200 mx-40 my-10 pb-5 rounded-xl relative shadow-lg">
-            <div class="relative hover:block float-right">
-                <button class="float-right mr-20 mt-6 bg-red-600 rounded-lg shadow-lg py-2 px-2 text-lg text-white hover:block">Select Difficulty:</button>
-                <div class="block bg-white rounded-lg py-1 align-right text-center object-right justify-right w-40 absolute shadow-lg z-10">
-                    <a href="#" class="px-2 py-1 block">Easy</a>
-                    <a href="#" class="px-2 py-1 block">Medium</a>
-                    <a href="#" class="px-2 py-1 block">Hard</a>
-                    <a href="#" class="px-2 py-1 block">Expert</a>
-                </div>
+        <div class="flex justify-center">
+            <div class="bg-gray-200 rounded-xl shadow-lg ml-40 mb-20 mt-10 w-3/12 subfont-ubmono">
+                <h1 class="pl-16 pr-20 py-16 text-gray-700 text-4xl">Top Scorers for ___ Difficulty!</h1>
+                <a href="" class="mx-20 px-5 py-2 text-white bg-red-500 rounded-xl shadow-lg">bruh</a>
             </div>
-            <h1 class="pl-24 ml-24 text-gray-700 text-4xl text-center py-4 justify-center">Top Scorers for ___ Difficulty!</h1>
-            <div class="bg-white mx-20 my-5 pb-5 rounded-xl shadow-lg text-center grid grid-cols-3 flex">
-                <h3 class="flex-1 text-3xl mx-5">Rank</h3>
-                <h3 class="flex-1 text-3xl mx-5">Name</h3>
-                <h3 class="flex-1 text-3xl mx-5">Time</h3>
-                <div class="bg-white mx-10 mt-5 rounded-xl shadow-lg text-center flex grid grid-cols-3 col-span-3">
+            <div class="bg-white mr-40 rounded-xl shadow-lg text-center grid grid-cols-3 justify-self-end w-5/12 -ml-20 mb-10">
+                <h3 class="subfont-ubmono flex-1 text-3xl mt-6 border-0">Rank</h3>
+                <h3 class="subfont-ubmono flex-1 text-3xl mt-6 border-0">Name</h3>
+                <h3 class="subfont-ubmono flex-1 text-3xl mt-6 border-0">Time</h3>
+                <div class="mx-10 mt-5 rounded-t-xl text-center flex col-span-3 border-b-2 border-gray-400">
                     <h3 class="flex-1 text-3xl py-2 mx-5">1.</h3>
-                    <h3 class="flex-1 text-3xl py-2 mx-5">Put name here bro</h3>
+                    <h3 class="flex-3 text-3xl py-2 mx-5">Put name here bro</h3>
                     <h3 class="flex-1 text-3xl py-2 mx-5">00:01</h3>
                 </div>
-                <div class="bg-white mx-10 mt-5 rounded-xl shadow-lg text-center flex grid grid-cols-3 col-span-3">
+                <div class="mx-10 text-center flex col-span-3 border-b-2 border-gray-400 bg-gray-200">
                     <h3 class="flex-1 text-3xl py-2 mx-5">2.</h3>
-                    <h3 class="flex-1 text-3xl py-2 mx-5">Put name here bro</h3>
+                    <h3 class="flex-3 text-3xl py-2 mx-5">Put name here bro</h3>
                     <h3 class="flex-1 text-3xl py-2 mx-5">00:01</h3>
                 </div>
-                <div class="bg-white mx-10 mt-5 rounded-xl shadow-lg text-center flex grid grid-cols-3 col-span-3">
+                <div class="mx-10 text-center flex col-span-3 border-b-2 border-gray-400">
                     <h3 class="flex-1 text-3xl py-2 mx-5">3.</h3>
-                    <h3 class="flex-1 text-3xl py-2 mx-5">Put name here bro</h3>
+                    <h3 class="flex-3 text-3xl py-2 mx-5">Put name here bro</h3>
                     <h3 class="flex-1 text-3xl py-2 mx-5">00:01</h3>
                 </div>
-                <div class="bg-white mx-10 mt-5 rounded-xl shadow-lg text-center flex grid grid-cols-3 col-span-3">
+                <div class="mx-10 text-center flex col-span-3 border-b-2 border-gray-400 bg-gray-200">
                     <h3 class="flex-1 text-3xl py-2 mx-5">4.</h3>
-                    <h3 class="flex-1 text-3xl py-2 mx-5">Put name here bro</h3>
+                    <h3 class="flex-3 text-3xl py-2 mx-5">Put name here bro</h3>
                     <h3 class="flex-1 text-3xl py-2 mx-5">00:01</h3>
                 </div>
-                <div class="bg-white mx-10 mt-5 rounded-xl shadow-lg text-center flex grid grid-cols-3 col-span-3">
+                <div class="mx-10 text-center flex col-span-3 border-b-2 border-gray-400">
                     <h3 class="flex-1 text-3xl py-2 mx-5">5.</h3>
-                    <h3 class="flex-1 text-3xl py-2 mx-5">Put name here bro</h3>
+                    <h3 class="flex-3 text-3xl py-2 mx-5">Put name here bro</h3>
                     <h3 class="flex-1 text-3xl py-2 mx-5">00:01</h3>
                 </div>
-                <div class="bg-white mx-10 mt-5 rounded-xl shadow-lg text-center flex grid grid-cols-3 col-span-3">
+                <div class="mx-10 text-center flex col-span-3 border-b-2 border-gray-400 bg-gray-200">
                     <h3 class="flex-1 text-3xl py-2 mx-5">6.</h3>
-                    <h3 class="flex-1 text-3xl py-2 mx-5">Put name here bro</h3>
+                    <h3 class="flex-3 text-3xl py-2 mx-5">Put name here bro</h3>
                     <h3 class="flex-1 text-3xl py-2 mx-5">00:01</h3>
                 </div>
-                <div class="bg-white mx-10 mt-5 rounded-xl shadow-lg text-center flex grid grid-cols-3 col-span-3">
+                <div class="mx-10 text-center flex col-span-3 border-b-2 border-gray-400">
                     <h3 class="flex-1 text-3xl py-2 mx-5">7.</h3>
-                    <h3 class="flex-1 text-3xl py-2 mx-5">Put name here bro</h3>
+                    <h3 class="flex-3 text-3xl py-2 mx-5">Put name here bro</h3>
                     <h3 class="flex-1 text-3xl py-2 mx-5">00:01</h3>
                 </div>
-                <div class="bg-white mx-10 mt-5 rounded-xl shadow-lg text-center flex grid grid-cols-3 col-span-3">
+                <div class="mx-10 text-center flex col-span-3 border-b-2 border-gray-400 bg-gray-200">
                     <h3 class="flex-1 text-3xl py-2 mx-5">8.</h3>
-                    <h3 class="flex-1 text-3xl py-2 mx-5">Put name here bro</h3>
+                    <h3 class="flex-3 text-3xl py-2 mx-5">Put name here bro</h3>
                     <h3 class="flex-1 text-3xl py-2 mx-5">00:01</h3>
                 </div>
-                <div class="bg-white mx-10 mt-5 rounded-xl shadow-lg text-center flex grid grid-cols-3 col-span-3">
+                <div class="mx-10 text-center flex col-span-3 border-b-2 border-gray-400">
                     <h3 class="flex-1 text-3xl py-2 mx-5">9.</h3>
-                    <h3 class="flex-1 text-3xl py-2 mx-5">Put name here bro</h3>
+                    <h3 class="flex-3 text-3xl py-2 mx-5">Put name here bro</h3>
                     <h3 class="flex-1 text-3xl py-2 mx-5">00:01</h3>
                 </div>
-                <div class="bg-white mx-10 mt-5 rounded-xl shadow-lg text-center flex grid grid-cols-3 col-span-3">
+                <div class="mx-10 rounded-b-xl text-center flex col-span-3 bg-gray-200 mb-10">
                     <h3 class="flex-1 text-3xl py-2 mx-5">10.</h3>
-                    <h3 class="flex-1 text-3xl py-2 mx-5">Put name here bro</h3>
+                    <h3 class="flex-3 text-3xl py-2 mx-5">Put name here bro</h3>
                     <h3 class="flex-1 text-3xl py-2 mx-5">00:01</h3>
                 </div>
             </div>
