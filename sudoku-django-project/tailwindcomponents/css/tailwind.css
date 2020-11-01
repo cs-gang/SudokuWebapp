@@ -39,18 +39,6 @@
       font-family: ubuntumono;
     }
 
-    .typeanime{
-        animation: type 2s steps(60, end);
-      }
-    
-      @keyframes type{
-        0%{
-          width: 0;
-        }
-        100%{
-          width: 100;
-        }
-      }
 }
 
 

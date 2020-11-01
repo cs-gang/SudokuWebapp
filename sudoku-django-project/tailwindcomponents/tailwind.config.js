@@ -38,11 +38,12 @@ module.exports = {
         rem20: '20rem',
         rem21: '21rem',
         rem26: '26rem'
-      }
+      },
+
     },
   },
   variants: {
-    backgroundColor: ['responsive', 'focus', 'hover', 'active']
+    backgroundColor: ['responsive', 'focus', 'hover', 'active'],
   },
   plugins: [],
   purge: {

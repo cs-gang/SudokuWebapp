@@ -626,31 +626,6 @@ video {
   font-family: ubuntumono;
 }
 
-.typeanime{
-  -webkit-animation: type 2s steps(60, end);
-          animation: type 2s steps(60, end);
-}
-
-@-webkit-keyframes type{
-  0%{
-    width: 0;
-  }
-
-  100%{
-    width: 100;
-  }
-}
-
-@keyframes type{
-  0%{
-    width: 0;
-  }
-
-  100%{
-    width: 100;
-  }
-}
-
 .container {
   width: 100%;
 }
@@ -22826,6 +22801,16 @@ video {
     transform: none;
     -webkit-animation-timing-function: cubic-bezier(0,0,0.2,1);
             animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+@-webkit-keyframes type {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
   }
 }
 
