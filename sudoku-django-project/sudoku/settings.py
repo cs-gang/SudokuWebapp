@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from deploy_details import details
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,9 +26,6 @@ SECRET_KEY = 'e33x@+x@b&wsag5x)2$g#%7v!0y_@$q6cu$g9p^#hx2a9jqn82'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.getenv('GAE_APPLICATION', None):
-    with open("sudoku\deploy_details.json", "r") as f:
-        details = json.load(f)
-        
     DEBUG = False
     SECRET_KEY = details['secret']
 else:
@@ -84,15 +82,12 @@ WSGI_APPLICATION = 'sudoku.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 import pymysql   # noqa: 402
-import json
 
 pymysql.version_info = (1, 4, 6, 'final', 0) 
 pymysql.install_as_MySQLdb()
 
 
 if os.getenv('GAE_APPLICATION', None):
-    with open("sudoku\deploy_details.json", "r") as f:
-        details = json.load(f)
     
     DATABASES = {
         'default': {

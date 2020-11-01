@@ -138,7 +138,10 @@ dmypy.json
 sudoku-django-project/mainapp/static/mainapp/tailwind-output.css
 
 #deployed database connection details
-sudoku-django-project/sudoku/deploy_details.json
+sudoku-django-project/deploy_details.py
+sudoku-django-project/sudoku/deploy_details.py
 
 #collected static files
 static/
+
+
