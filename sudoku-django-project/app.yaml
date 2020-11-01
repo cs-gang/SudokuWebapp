@@ -6,3 +6,5 @@ handlers:
 
 - url: /.*
   script: auto
+
+entrypoint: gunicorn -b :$PORT mainapp.wsgi

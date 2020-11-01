@@ -35,7 +35,7 @@ else:
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = 'e33x@+x@b&wsag5x)2$g#%7v!0y_@$q6cu$g9p^#hx2a9jqn82'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'sudoku-webapp-292913.el.r.appspot.com']
 
 
 # Application definition
