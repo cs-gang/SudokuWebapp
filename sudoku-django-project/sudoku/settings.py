@@ -100,7 +100,24 @@ if os.getenv('GAE_APPLICATION', None):
     }
 
 else:
-    DATABASES = {
+    with open(r"sudoku\local.cnf", "r") as f:
+        data = {}
+        a = f.readlines()
+        a.pop(0)
+        for line in a:
+            line = line.split("=")
+            data[line[0].strip()] = line[1].strip()
+    DATABASES = {                    # on VM
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': data['database'],
+            'USER': data['user'], 
+            'PASSWORD': data['password'],
+            'HOST': data['host'],
+            'PORT': ''
+            },
+        }
+    '''DATABASES = {     # local; used to do manage.py makemigrations
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'OPTIONS': {
@@ -108,8 +125,7 @@ else:
                 'autocommit': True,
             },
         }
-    }
-
+    }'''
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
