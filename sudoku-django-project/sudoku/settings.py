@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from deploy_details import details
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +25,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'e33x@+x@b&wsag5x)2$g#%7v!0y_@$q6cu$g9p^#hx2a9jqn82'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.getenv('GAE_APPLICATION', None):
+    DEBUG = False
+    SECRET_KEY = details['secret']
+else:
+    DEBUG = True
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = 'e33x@+x@b&wsag5x)2$g#%7v!0y_@$q6cu$g9p^#hx2a9jqn82'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'sudoku-webapp-292913.el.r.appspot.com']
 
 
 # Application definition
@@ -73,16 +81,34 @@ WSGI_APPLICATION = 'sudoku.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+import pymysql   # noqa: 402
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': 'sudoku\my.cnf',
-            'autocommit': True,
-        },
+pymysql.version_info = (1, 4, 6, 'final', 0) 
+pymysql.install_as_MySQLdb()
+
+
+if os.getenv('GAE_APPLICATION', None):
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': details['host'],
+            'USER': details['user'],
+            'PASSWORD': details['password'],
+            'NAME': details['database']
+        }
     }
-}
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'OPTIONS': {
+                'read_default_file': 'sudoku\local.cnf',
+                'autocommit': True,
+            },
+        }
+    }
 
 
 # Password validation
@@ -122,3 +148,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
