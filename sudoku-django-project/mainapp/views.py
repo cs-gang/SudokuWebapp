@@ -7,17 +7,19 @@ from .models import GameBoards
 
 queue = BoardsQueue()
 
-upper, lower = 0, 11    # ID range to load to queue
+lower, upper = 0, 11    # ID range to load to queue
+print(upper, lower, "=======")
 for result in GameBoards.objects.filter(id__in=list(range(lower, upper))):
     queue.enqueue([result.id, result.game_board])
 else:
     lower, upper = 11, 21
-
+print(upper, lower, "=======")
 # Create your views here.
 def index(request: http.HttpRequest) -> http.HttpResponse:
     return render(request, "mainapp/index.html", {})
 
 def game(request: http.HttpRequest) -> http.HttpResponse:
+    global lower, upper
     try:
         board_id, game_board = queue.dequeue()
     except QueueUnderflowError:

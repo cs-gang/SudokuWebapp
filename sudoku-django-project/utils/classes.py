@@ -1,6 +1,6 @@
 from random import shuffle, randint
 import typing
-import exceptions
+import utils.exceptions
 
 BoardType = typing.List[typing.List[typing.Union[None, int]]]    # type hint alias for board - a list of lists
                                                                  # with int or None as values
@@ -294,17 +294,16 @@ class BoardsQueue:
     def __init__(self, max_size: int=10):   # noqa: ANN204
         self._queue = []
         self.max_size = max_size
-        self.front, self.back = self._queue[0], self._queue[-1]
 
     def enqueue(self, board: list) -> None:
         if len(self._queue) > self.max_size:
-            raise exceptions.QueueOverflowError
+            raise utils.exceptions.QueueOverflowError
         
         self._queue.append(board)
 
     def dequeue(self) -> typing.Union[list, None]:
         if len(self._queue) == 0:
-            raise exceptions.QueueUnderflowError
+            raise utils.exceptions.QueueUnderflowError
         
         return self._queue.pop(0)
 
