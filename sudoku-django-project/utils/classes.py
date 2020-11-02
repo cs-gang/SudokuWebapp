@@ -303,12 +303,10 @@ class BoardsQueue:
         self._queue.append(board)
 
     def dequeue(self) -> typing.Union[list, None]:
-        try:
-            out = self._queue.pop(0)
-        except IndexError:
+        if len(self._queue) == 0:
             raise exceptions.QueueUnderflowError
-
-        return out
+        
+        return self._queue.pop(0)
 
     
 
