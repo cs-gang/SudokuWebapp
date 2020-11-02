@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django import http
+import json
 
 from utils.classes import BoardsQueue
 from utils.exceptions import QueueUnderflowError
@@ -10,7 +11,7 @@ queue = BoardsQueue()
 lower, upper = 0, 11    # ID range to load to queue
 print(upper, lower, "=======")
 for result in GameBoards.objects.filter(id__in=list(range(lower, upper))):
-    queue.enqueue([result.id, result.game_board])
+    queue.enqueue([result.id, json.loads(result.game_board)])
 else:
     lower, upper = 11, 21
 print(upper, lower, "=======")
