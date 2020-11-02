@@ -6,7 +6,6 @@ class GameBoards(models.Model):
     # An autoincrementing ID column which will be used as primary key is automatically added.
     game_board = models.TextField()
     check_board = models.TextField()
-    
     def __str__(self) -> Union[str, int]:
         return self.id
 
