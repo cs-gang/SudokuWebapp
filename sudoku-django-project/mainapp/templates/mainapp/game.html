@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="grid float-left grid grid-rows-3 grid-cols-3 gap-2 w-1/2 ml-20 mt-2 border-transparent blue-700 border-8 shadow-2xl">
+        <div id="Grid" class="grid float-left grid grid-rows-3 grid-cols-3 gap-2 w-1/2 ml-20 mt-2 border-transparent blue-700 border-8 shadow-2xl">
             <div class="grid grid-rows-3 grid-cols-3 gap-1 h-48">
                 <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
                 <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
@@ -136,6 +136,7 @@
 </html>
 
 <script>
+    //Timer Code
     var name_text_holder = document.getElementById('name-getter')
     var name_text_button = document.getElementById('name-getter-button')
     var name_getter_layout = document.getElementById('name-getter-layout')
@@ -181,7 +182,36 @@
         clearInterval(window.timer_interval)
     }
 
-    
+    //Code to fill the Sudoku Board
+
+    var board_values = {{game_board}}
+    var board_template = document.getElementById("Grid").children
+
+    function fillgrid(grid_count, board_values, grid){
+        console.log(board_values)
+        element_index = -1
+        for (let row_count=0; row_count<3; row_count++){
+            for (let element_count=0; element_count<3; element_count++){
+                element_index++
+                element = board_values[grid_count+row_count][element_count]
+
+                if (element == 0){ continue }
+                else {
+                    grid[element_index].value = String(element)
+                    grid[element_index].setAttribute("readonly", null)
+                }
+            }
+        }
+    }
+
+    function fillboard(board_values, board_template){
+        for (let i=0; i < board_template.length; i++){
+            fillgrid(i,board_values, board_template[i].children)
+        }
+    }
+
+    console.log(board_values, board_template[0])
+    fillboard(board_values, board_template)
 
 
     
