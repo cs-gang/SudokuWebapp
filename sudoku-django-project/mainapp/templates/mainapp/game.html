@@ -123,8 +123,8 @@
         <div class="float-right bg-gray-300 rounded-xl shadow-2xl border-4 w-rem20 h-rem21 mr-32 mt-32">
             <div class="rounded-lg shadow-md m-4 bg-gray-100 border-2 h-56">
                 <h5 id="Name-headline" class="rounded-lg shadow-md text-2xl text-center subfont-cumono font-bold">NAME</h5>
-                <h5 class="text-2xl text-center mt-5 subfont-cumono">Time elapsed: <br> 0min 00s</h5>
-                <button class="rounded-lg shadow-md py-1 px-4 mx-20 mt-5 text-2xl border-red-500 hover:border-white hover:bg-red-500 hover:text-white active:bg-red-700 border-2 focus:outline-none subfont-cumono">Submit</button>
+                <h5 id="Timer" class="text-2xl text-center mt-5 subfont-cumono">Time Elapsed: <br> 0min 00s</h5>
+                <button id="Sudoku-button" onclick="SubmitHandle()" class="rounded-lg shadow-md py-1 px-4 mx-20 mt-5 text-2xl border-red-500 hover:border-white hover:bg-red-500 hover:text-white active:bg-red-700 border-2 focus:outline-none subfont-cumono">Submit</button>
             </div>
             <div class="bg-gray-200 grid grid-cols-2 gap-2 m-4 mt-4 border-2">
                 <a href="#" class="shadow-md rounded-lg py-2 text-center text-1xl border-blue-600 hover:border-white hover:bg-blue-600 hover:text-white active:bg-blue-800 border-2 subfont-ubmono">Home</a>
@@ -140,8 +140,32 @@
     var name_text_button = document.getElementById('name-getter-button')
     var name_getter_layout = document.getElementById('name-getter-layout')
 
+    var sudoku_submit_button = document.getElementById("Sudoku-button")
+
     var name
- 
+
+    function update_timer(){
+        if (window.second1 == 5 && window.second2 == 9){
+            window.mins++
+            window.second1 = 0
+            window.second2 = 0
+        } else if (window.second2 == 9) {
+            window.second1++
+            window.second2 = 0
+        } else {
+            window.second2++
+        } 
+        window.timer.innerText = "Time Elapsed:\n" + String(window.mins) + "min " + String(window.second1) + String(window.second2) + "s"
+    }
+  
+    function timer_start(){
+        window.timer = document.getElementById("Timer")
+        window.mins = parseInt(timer.innerText[14])
+        window.second1 = parseInt(timer.innerText[19])
+        window.second2 = parseInt(timer.innerText[20])
+        window.timer_interval = setInterval(update_timer, 1000)
+    }
+
     function replace_name(name){
         document.getElementById("Name-headline").innerText = name
     }
@@ -150,6 +174,11 @@
         name = name_text_holder.value
         name_getter_layout.remove()
         replace_name(name)
+        timer_start()
+    }
+
+    function SubmitHandle(){
+        clearInterval(window.timer_interval)
     }
 
     
