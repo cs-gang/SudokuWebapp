@@ -198,7 +198,7 @@
                 if (element == 0){ continue }
                 else {
                     grid[element_index].value = String(element)
-                    grid[element_index].setAttribute("readonly", null)
+                    grid[element_index].setAttribute("disabled", null)
                 }
             }
         }
@@ -213,7 +213,18 @@
     //Solution checking Code. 
 
     function convert_board(board_template){
-        
+        rows = []
+        for (let row_value = 0; row_value<9; row_value++){
+            row = []
+            for (let box_value = 0; box_value<3; box_value++){
+                for(let element_value = 0; element_value<3; element_value++){
+                    box = board_template[Math.floor(row_value/3)*3+box_value].children
+                    element = box[row_value%3*3+element_value].value
+                    row.push(parseInt(element))
+                }
+            }
+            rows.push(row)
+        }
     }
 
     result_board = {{check_board}}

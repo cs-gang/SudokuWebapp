@@ -27,6 +27,7 @@ def index(request: http.HttpRequest) -> http.HttpResponse:
 @require_http_methods(['GET', 'POST'])
 def game(request: http.HttpRequest) -> http.HttpResponse:
     if request.method == 'GET':
+        global upper, lower
         try:
             board_id, game_board, check_board = queue.dequeue()
         except QueueUnderflowError:
