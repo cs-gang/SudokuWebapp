@@ -143,8 +143,6 @@
 
     var sudoku_submit_button = document.getElementById("Sudoku-button")
 
-    var name
-
     function update_timer(){
         if (window.second1 == 5 && window.second2 == 9){
             window.mins++
@@ -171,19 +169,22 @@
         document.getElementById("Name-headline").innerText = name
     }
 
+    // Main Function 1 -> makes the board and starts timer.
     function clickhandle(){
-        name = name_text_holder.value
+        fillboard(board_values, board_template)
+        var name = name_text_holder.value
         name_getter_layout.remove()
         replace_name(name)
         timer_start()
     }
 
+    // Main Function 2 -> Handles user submission.
     function SubmitHandle(){
         clearInterval(window.timer_interval)
+        check_board_result(board_template)
     }
 
     //Code to fill the Sudoku Board
-
     var board_values = {{game_board}}
     var board_template = document.getElementById("Grid").children
 
@@ -209,8 +210,16 @@
         }
     }
 
-    console.log(board_values, board_template[0])
-    fillboard(board_values, board_template)
+    //Solution checking Code. 
+
+    function convert_board(board_template){
+        
+    }
+
+    result_board = {{check_board}}
+    function check_board_result(board_template){
+        var board_rows = convert_board(board_template)
+    }
 
 
     
