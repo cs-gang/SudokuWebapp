@@ -188,12 +188,11 @@
     var board_template = document.getElementById("Grid").children
 
     function fillgrid(grid_count, board_values, grid){
-        console.log(board_values)
         element_index = -1
         for (let row_count=0; row_count<3; row_count++){
             for (let element_count=0; element_count<3; element_count++){
                 element_index++
-                element = board_values[grid_count+row_count][element_count]
+                element = board_values[Math.floor(grid_count/3)*3+row_count][grid_count%3*3+element_count]
 
                 if (element == 0){ continue }
                 else {
