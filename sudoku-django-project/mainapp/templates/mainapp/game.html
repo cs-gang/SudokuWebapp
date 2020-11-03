@@ -9,6 +9,13 @@
 
     <body class="h-24 bg-gradient-to-b from-teal-300 to-blue-700">
 
+        <form id="post-req" class="absolute opacity-0" method="POST">
+            {% csrf_token %} 
+            <input type="text" disabled name="username">
+            <input type="text" disabled name="time">
+            <input type="submit" value="Submit">
+        </form>
+
         <div id="name-getter-layout" class="absolute bg-black bg-opacity-75 w-screen h-screen">
             <div class="grid grid-rows-2 gap-5 rounded-md border-white border-2 bg-gray-300 text-black w-1/4 m-auto mt-56 animate-fall">
                 <h4 class="text-center text-3xl subfont-cumono font-bold">Enter your Name:</h4>
@@ -121,6 +128,7 @@
             </div>
         </div>
         <div class="float-right bg-gray-300 rounded-xl shadow-2xl border-4 w-rem20 h-rem21 mr-32 mt-32">
+            {{board_id}}
             <div class="rounded-lg shadow-md m-4 bg-gray-100 border-2 h-56">
                 <h5 id="Name-headline" class="rounded-lg shadow-md text-2xl text-center subfont-cumono font-bold">NAME</h5>
                 <h5 id="Timer" class="text-2xl text-center mt-5 subfont-cumono">Time Elapsed: <br> 0min 00s</h5>
@@ -142,8 +150,11 @@
     var name_getter_layout = document.getElementById('name-getter-layout')
 
     var sudoku_submit_button = document.getElementById("Sudoku-button")
+    var name
+    var seconds = 0
 
     function update_timer(){
+        seconds += 1
         if (window.second1 == 5 && window.second2 == 9){
             window.mins++
             window.second1 = 0
@@ -172,7 +183,7 @@
     // Main Function 1 -> makes the board and starts timer.
     function clickhandle(){
         fillboard(board_values, board_template)
-        var name = name_text_holder.value
+        name = name_text_holder.value
         name_getter_layout.remove()
         replace_name(name)
         timer_start()
@@ -180,8 +191,11 @@
 
     // Main Function 2 -> Handles user submission.
     function SubmitHandle(){
-        clearInterval(window.timer_interval)
-        check_board_result(board_template)
+        if (check_board_result(board_template)){
+            clearInterval(window.timer_interval)
+            post_req(name, seconds)
+        }
+        
     }
 
     //Code to fill the Sudoku Board
@@ -210,7 +224,15 @@
         }
     }
 
-    //Solution checking Code. 
+    //Solution checking and post request Code
+
+    function post_req(name, time){
+        var form = document.getElementById('post-req')
+        form.children[0].value = name
+        form.children[1].value = time
+        form.submit()
+
+    }
 
     function convert_board(board_template){
         rows = []
@@ -225,11 +247,31 @@
             }
             rows.push(row)
         }
+        return rows
     }
 
+    function compare_and_modify_board(board, correct_values){
+        for (let row = 0; row<9; row++){
+            for(let element = 0; element<9; element++){
+                var value_to_check = board[row][element]
+
+                if(value_to_check != correct_values[row][element]){
+                   alert("Your solution is wrong!")
+                   return false
+                }
+
+            }
+        
+        alert("Your answer is correct! Check the leaderboard to see if you are there.")
+        return true
+    }
+}
+
     result_board = {{check_board}}
+    console.log(result_board)
     function check_board_result(board_template){
         var board_rows = convert_board(board_template)
+        return compare_and_modify_board(board_rows, result_board)
     }
 
 
