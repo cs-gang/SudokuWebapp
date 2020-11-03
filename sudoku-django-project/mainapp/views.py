@@ -49,5 +49,6 @@ def index(response: http.HttpRequest) -> http.HttpResponse:
 
 def leaderboard(request: http.HttpRequest) -> http.HttpResponse:
     data = Leaderboard.objects.all().order_by('time')
-    context = {"data": list(data)}  # and put that data in context to be passed to the view.
+    formatted_data = [[entry.name, entry.time] for entry in data]
+    context = {"data": formatted_data}  # and put that data in context to be passed to the view.
     return render(request, "mainapp/leaderboard.html", context)
