@@ -131,8 +131,15 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#MySQL config file
+# MySQL config file
 *.cnf
 
-#CSS file
+# CSS file
 sudoku-django-project/mainapp/static/mainapp/tailwind-output.css
+
+# Static files
+sudoku-django-project/static
+
+# Deploy details
+sudoku-django-project/sudoku/deploy_details.py
+sudoku-django-project/deploy_details.py

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django import http
+
+from mainapp.models import Leaderboard
 # Create your views here.
 
 def index(response: http.HttpRequest) -> http.HttpResponse:
@@ -23,7 +25,29 @@ def index(response: http.HttpRequest) -> http.HttpResponse:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def leaderboard(request: http.HttpRequest) -> http.HttpResponse:
-    # do data retrieval
-    context = {}  # and put that data in context to be passed to the view.
+    data = Leaderboard.objects.all().order_by('time')
+    context = {"data": list(data)}  # and put that data in context to be passed to the view.
     return render(request, "mainapp/leaderboard.html", context)
