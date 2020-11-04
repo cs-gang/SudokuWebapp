@@ -25,39 +25,35 @@ else:
 def index(request: http.HttpRequest) -> http.HttpResponse:
     return render(request, "mainapp/index.html", {})
 
-@require_http_methods(['GET', 'POST'])
+@require_GET
 def game(request: http.HttpRequest) -> http.HttpResponse:
-    if request.method == 'GET':
-        global upper, lower
-        try:
-            board_id, game_board, check_board = queue.dequeue()
-        except QueueUnderflowError:
-            if upper == 101:        #there are currently only 100 items on the database, so it loops back to the starting.
-                lower, upper = 0, 11
-            else:
-                lower += 10
-                upper += 10
+    global upper, lower
+    try:
+        board_id, game_board, check_board = queue.dequeue()
+    except QueueUnderflowError:
+        if upper == 101:        #there are currently only 100 items on the database, so it loops back to the starting.
+            lower, upper = 0, 11
+        else:
+            lower += 10
+            upper += 10
 
-            for result in GameBoards.objects.filter(id__in=list(range(lower, upper))):  #loading new tables from database
-                queue.enqueue([result.id, json.loads(result.game_board), json.loads(result.check_board)])
-            else:
-                lower, upper = upper, upper + 10
+        for result in GameBoards.objects.filter(id__in=list(range(lower, upper))):  #loading new tables from database
+            queue.enqueue([result.id, json.loads(result.game_board), json.loads(result.check_board)])
+        else:
+            lower, upper = upper, upper + 10
 
-            board_id, game_board, check_board = queue.dequeue()
-        context = {'board_id': board_id, 'game_board': game_board, 'check_board': check_board}
-        
-        return render(request, "mainapp/game.html", context)
-
+        board_id, game_board, check_board = queue.dequeue()
+    context = {'board_id': board_id, 'game_board': game_board, 'check_board': check_board}
+    
+    return render(request, "mainapp/game.html", context)
 
 
-def result(request: http.HttpRequest) -> http.HttpResponse:
-        """username = request.GET['username']
-        time = int(request.GET['time'])
 
+def result(request: http.HttpRequest, username: str, time: int) -> http.HttpResponse:
         current_worst = Leaderboard.objects.all().aggregate(Max('time'))
 
         if time < current_worst['time__max']:
             new = Leaderboard(name=username, time=time)
-            new.save()"""
+            new.save()
         print(request.GET)
-        return redirect('') 
+        return redirect('index') 
