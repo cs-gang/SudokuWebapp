@@ -33,6 +33,11 @@ module.exports = {
         typeanim: 'type 4s steps(100, end)',
         fall: 'falling 3s linear'
       },
+      spacing: {
+        'rem18': '18rem',
+        'rem20': '20rem',
+        'rem21': '21rem',
+      },
     },
   },
   variants: {
