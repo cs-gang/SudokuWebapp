@@ -46,21 +46,19 @@ def game(request: http.HttpRequest) -> http.HttpResponse:
     
     return render(request, "mainapp/game.html", context)
 
-
-@require_POST
 def result(request: http.HttpRequest) -> http.HttpResponse:
-    
-    form = AddToLeaderboardForm(request.POST)
-    if form.is_valid():
-        time = form.cleaned_data['time']
-        username = form.cleaned_data['username']
+    if request.method == 'POST':
+        form = AddToLeaderboardForm(request.POST)
+        if form.is_valid():
+            time = form.cleaned_data['time']
+            username = form.cleaned_data['username']
 
-    current_worst = Leaderboard.objects.all().aggregate(Max('time'))
-    if time < current_worst['time__max']:
-        new = Leaderboard(name=username, time=time)
-        new.save()
+        current_worst = Leaderboard.objects.all().aggregate(Max('time'))
+        if time < current_worst['time__max']:
+            new = Leaderboard(name=username, time=time)
+            new.save()
 
-    return redirect('index') 
+        return redirect('index') 
 
 def leaderboard(request: http.HttpRequest, home: str="") -> http.HttpResponse:
     if home == "lb":
