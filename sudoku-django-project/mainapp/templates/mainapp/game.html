@@ -9,8 +9,7 @@
 
     <body class="h-24 bg-gradient-to-b from-teal-300 to-blue-700">
 
-        <form id="post-req" class="absolute opacity-0" method="POST">
-            {% csrf_token %} 
+        <form id="post-req" class="absolute opacity-0" action="/result" method="GET">
             <input type="text" disabled name="username">
             <input type="text" disabled name="time">
             <input type="submit" value="Submit">

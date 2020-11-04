@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django import http
 from django.views.decorators.http import require_http_methods, require_GET
-from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import redirect
 from django.db.models import Max
 import json
 
@@ -26,7 +26,6 @@ def index(request: http.HttpRequest) -> http.HttpResponse:
     return render(request, "mainapp/index.html", {})
 
 @require_http_methods(['GET', 'POST'])
-@csrf_protect
 def game(request: http.HttpRequest) -> http.HttpResponse:
     if request.method == 'GET':
         global upper, lower
@@ -48,19 +47,17 @@ def game(request: http.HttpRequest) -> http.HttpResponse:
         context = {'board_id': board_id, 'game_board': game_board, 'check_board': check_board}
         
         return render(request, "mainapp/game.html", context)
-    elif request.method == 'POST':
-        username = request.POST['username']
-        time = int(request.POST['time'])
+
+
+
+def result(request: http.HttpRequest) -> http.HttpResponse:
+        """username = request.GET['username']
+        time = int(request.GET['time'])
 
         current_worst = Leaderboard.objects.all().aggregate(Max('time'))
 
         if time < current_worst['time__max']:
             new = Leaderboard(name=username, time=time)
-            new.save()
-            on_leaderboard = True
-        else:
-            on_leaderboard = False
-
-        context = {'result': True, 'on_leaderboard': on_leaderboard}
-
-        return render(request, "mainaapp/game.html", context) 
+            new.save()"""
+        print(request.GET)
+        return redirect('') 
