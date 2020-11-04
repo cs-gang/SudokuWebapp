@@ -42,7 +42,7 @@ def game(request: http.HttpRequest) -> http.HttpResponse:
             lower, upper = upper, upper + 10
 
         board_id, game_board, check_board = queue.dequeue()
-    context = {'board_id': board_id, 'game_board': game_board, 'check_board': check_board}
+    context = {'board_id': board_id, 'game_board': game_board, 'check_board': check_board, 'form': AddToLeaderboardForm()}
     
     return render(request, "mainapp/game.html", context)
 
