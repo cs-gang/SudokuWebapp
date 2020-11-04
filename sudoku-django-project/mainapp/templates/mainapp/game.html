@@ -9,9 +9,9 @@
 
     <body class="h-24 bg-gradient-to-b from-teal-300 to-blue-700">
 
-        <form id="post-req" class="absolute opacity-0" method="GET">
-            <input type="text" disabled name="username">
-            <input type="text" disabled name="time">
+        <form id="post-req" class="absolute opacity-0" action="/result" method="POST">
+            {% csrf_token %}
+            {{ form }}
             <input type="submit" value="Submit">
         </form>
 
@@ -143,6 +143,10 @@
 </html>
 
 <script>
+
+    var form = document.getElementById('post-req')
+    console.log(form.children)
+
     //Timer Code
     var name_text_holder = document.getElementById('name-getter')
     var name_text_button = document.getElementById('name-getter-button')
@@ -224,20 +228,13 @@
     }
 
     //Solution checking and post request Code
+    
 
     function post_req(name, time){
         var form = document.getElementById('post-req')
-        var action_url = "/result/"+String(name)+"/"+String(time)
-        form.action = action_url
-        //form.children[0].value = name
-        //form.children[1].value = time
+        form.children[2].value = name
+        form.children[4].value = time
         form.submit()
-    }
-
-    function change_action(){
-        var action_url = "http://localhost:8000/game/result/"+String(name)+"/"+String(time)
-        var form = document.getElementById('post-req')
-        form.action = action_url
     }
 
     function convert_board(board_template){
