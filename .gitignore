@@ -131,7 +131,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#MySQL config file
+# MySQL config file
 *.cnf
 
 #CSS file
