@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django import http
 
 from mainapp.models import Leaderboard
@@ -47,8 +47,11 @@ def index(response: http.HttpRequest) -> http.HttpResponse:
 
 
 
-def leaderboard(request: http.HttpRequest) -> http.HttpResponse:
-    data = Leaderboard.objects.all().order_by('time')
-    formatted_data = [[entry.name, entry.time] for entry in data][:10]
-    context = {"data": formatted_data}  # and put that data in context to be passed to the view.
-    return render(request, "mainapp/leaderboard.html", context)
+def leaderboard(request: http.HttpRequest, home: str="") -> http.HttpResponse:
+    if home == "lb":
+        data = Leaderboard.objects.all().order_by('time')
+        formatted_data = [[entry.name, entry.time] for entry in data][:10]
+        context = {"data": formatted_data}  # and put that data in context to be passed to the view.
+        return render(request, "mainapp/leaderboard.html", context)
+    else:
+        return redirect("index")
