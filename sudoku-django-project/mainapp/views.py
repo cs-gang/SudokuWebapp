@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django import http
 from django.views.decorators.http import require_http_methods, require_GET
-from django.shortcuts import redirect
 from django.db.models import Max
 import json
 
@@ -13,12 +12,11 @@ from .models import GameBoards, Leaderboard
 queue = BoardsQueue()
 
 lower, upper = 0, 11    # ID range to load to queue
-# fillinf queue with tables saved on the database
+# filling queue with tables saved on the database
 for result in GameBoards.objects.filter(id__in=list(range(lower, upper))):
     queue.enqueue([result.id, json.loads(result.game_board), json.loads(result.check_board)])
 else:
     lower, upper = 11, 21
-
 
 # Create your views here.
 @require_GET
@@ -48,12 +46,21 @@ def game(request: http.HttpRequest) -> http.HttpResponse:
     return render(request, "mainapp/game.html", context)
 
 
-
+@require_GET
 def result(request: http.HttpRequest, username: str, time: int) -> http.HttpResponse:
         current_worst = Leaderboard.objects.all().aggregate(Max('time'))
-
         if time < current_worst['time__max']:
             new = Leaderboard(name=username, time=time)
             new.save()
         print(request.GET)
         return redirect('index') 
+
+def leaderboard(request: http.HttpRequest, home: str="") -> http.HttpResponse:
+    if home == "lb":
+        data = Leaderboard.objects.all().order_by('time')
+        formatted_data = [[entry.name, entry.time] for entry in data][:10]
+        context = {"data": formatted_data}  # and put that data in context to be passed to the view.
+        return render(request, "mainapp/leaderboard.html", context)
+    else:
+        return redirect("index")
+
