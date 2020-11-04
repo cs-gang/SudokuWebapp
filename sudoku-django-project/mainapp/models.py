@@ -14,5 +14,5 @@ class Leaderboard(models.Model):
     time = models.IntegerField()
 
     def __str__(self) -> str: 
-        return ", ".join([self.name, self.time])
+        return ", ".join([self.name, str(self.time)])
 
