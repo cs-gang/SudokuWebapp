@@ -32,7 +32,7 @@ module.exports = {
       animation:{
         typeanim: 'type 4s steps(100, end)',
         fall: 'falling 3s linear'
-      }
+      },
     },
   },
   variants: {

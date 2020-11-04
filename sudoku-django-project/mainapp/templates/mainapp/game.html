@@ -1,0 +1,286 @@
+<!DOCTYPE HTML5>
+{% load static %}
+
+<html>
+    <head>
+        <title>Game</title>
+        <link href="{% static "mainapp/tailwind-output.css"%}" rel="stylesheet" type="text/css">
+    </head>
+
+    <body class="h-24 bg-gradient-to-b from-teal-300 to-blue-700">
+
+        <form id="post-req" class="absolute opacity-0" method="GET">
+            <input type="text" disabled name="username">
+            <input type="text" disabled name="time">
+            <input type="submit" value="Submit">
+        </form>
+
+        <div id="name-getter-layout" class="absolute bg-black bg-opacity-75 w-screen h-screen">
+            <div class="grid grid-rows-2 gap-5 rounded-md border-white border-2 bg-gray-300 text-black w-1/4 m-auto mt-56 animate-fall">
+                <h4 class="text-center text-3xl subfont-cumono font-bold">Enter your Name:</h4>
+
+                <input id="name-getter" type="text" maxlength="10" placeholder="Enter Name" class="border-blue-800 border-4 focus:outline-none align-middle text-black text-2xl text-center subfont-cumono rounded-md">
+
+                <button id="name-getter-button" onclick="clickhandle()" class="rounded-lg shadow-md px-4 mx-20 text-2xl border-blue-600 hover:border-white hover:bg-blue-600 hover:text-white active:bg-blue-800 border-2 focus:outline-none subfont-cumono">Enter</button>
+            </div>
+        </div>
+
+        <div id="Grid" class="grid float-left grid grid-rows-3 grid-cols-3 gap-2 w-1/2 ml-20 mt-2 border-transparent blue-700 border-8 shadow-2xl">
+            <div class="grid grid-rows-3 grid-cols-3 gap-1 h-48">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+            </div>
+            <div class="grid grid-rows-3 grid-cols-3 gap-1 h-48">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+            </div>
+            <div class="grid grid-rows-3 grid-cols-3 gap-1 h-48">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+            </div>
+            <div class="grid grid-rows-3 grid-cols-3 gap-1 h-48">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+            </div>
+            <div class="grid grid-rows-3 grid-cols-3 gap-1 h-48">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+            </div>
+            <div class="grid grid-rows-3 grid-cols-3 gap-1 h-48">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+            </div>
+            <div class="grid grid-rows-3 grid-cols-3 gap-1 h-48">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+            </div>
+            <div class="grid grid-rows-3 grid-cols-3 gap-1 h-48">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+            </div>
+            <div class="grid grid-rows-3 grid-cols-3 gap-1 h-48">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+                <input class="text-3xl text-center subfont-cumono focus:bg-blue-200 focus:outline-none" maxlength="1" type="text">
+            </div>
+        </div>
+        <div class="float-right bg-gray-300 rounded-xl shadow-2xl border-4 w-rem20 h-rem21 mr-32 mt-32">
+            {{board_id}}
+            <div class="rounded-lg shadow-md m-4 bg-gray-100 border-2 h-56">
+                <h5 id="Name-headline" class="rounded-lg shadow-md text-2xl text-center subfont-cumono font-bold">NAME</h5>
+                <h5 id="Timer" class="text-2xl text-center mt-5 subfont-cumono">Time Elapsed: <br> 0min 00s</h5>
+                <button id="Sudoku-button" onclick="SubmitHandle()" class="rounded-lg shadow-md py-1 px-4 mx-20 mt-5 text-2xl border-red-500 hover:border-white hover:bg-red-500 hover:text-white active:bg-red-700 border-2 focus:outline-none subfont-cumono">Submit</button>
+            </div>
+            <div class="bg-gray-200 grid grid-cols-2 gap-2 m-4 mt-4 border-2">
+                <a href="#" class="shadow-md rounded-lg py-2 text-center text-1xl border-blue-600 hover:border-white hover:bg-blue-600 hover:text-white active:bg-blue-800 border-2 subfont-ubmono">Home</a>
+                <a href="#" class="shadow-md rounded-lg py-2 text-center text-1xl border-blue-600 hover:border-white hover:bg-blue-600 hover:text-white active:bg-blue-800 border-2 subfont-ubmono">LeaderBoard</a>
+            </div>
+        </div>
+    
+    </body>
+</html>
+
+<script>
+    //Timer Code
+    var name_text_holder = document.getElementById('name-getter')
+    var name_text_button = document.getElementById('name-getter-button')
+    var name_getter_layout = document.getElementById('name-getter-layout')
+
+    var sudoku_submit_button = document.getElementById("Sudoku-button")
+    var name
+    var seconds = 0
+
+    function update_timer(){
+        seconds += 1
+        if (window.second1 == 5 && window.second2 == 9){
+            window.mins++
+            window.second1 = 0
+            window.second2 = 0
+        } else if (window.second2 == 9) {
+            window.second1++
+            window.second2 = 0
+        } else {
+            window.second2++
+        } 
+        window.timer.innerText = "Time Elapsed:\n" + String(window.mins) + "min " + String(window.second1) + String(window.second2) + "s"
+    }
+  
+    function timer_start(){
+        window.timer = document.getElementById("Timer")
+        window.mins = parseInt(timer.innerText[14])
+        window.second1 = parseInt(timer.innerText[19])
+        window.second2 = parseInt(timer.innerText[20])
+        window.timer_interval = setInterval(update_timer, 1000)
+    }
+
+    function replace_name(name){
+        document.getElementById("Name-headline").innerText = name
+    }
+
+    // Main Function 1 -> makes the board and starts timer.
+    function clickhandle(){
+        fillboard(board_values, board_template)
+        name = name_text_holder.value
+        name_getter_layout.remove()
+        replace_name(name)
+        timer_start()
+    }
+
+    // Main Function 2 -> Handles user submission.
+    function SubmitHandle(){
+        if (check_board_result(board_template)){
+            clearInterval(window.timer_interval)
+            post_req(name, seconds)
+        }
+        
+    }
+
+    //Code to fill the Sudoku Board
+    var board_values = {{game_board}}
+    var board_template = document.getElementById("Grid").children
+
+    function fillgrid(grid_count, board_values, grid){
+        element_index = -1
+        for (let row_count=0; row_count<3; row_count++){
+            for (let element_count=0; element_count<3; element_count++){
+                element_index++
+                element = board_values[Math.floor(grid_count/3)*3+row_count][grid_count%3*3+element_count]
+
+                if (element == 0){ continue }
+                else {
+                    grid[element_index].value = String(element)
+                    grid[element_index].setAttribute("disabled", null)
+                }
+            }
+        }
+    }
+
+    function fillboard(board_values, board_template){
+        for (let i=0; i < board_template.length; i++){
+            fillgrid(i,board_values, board_template[i].children)
+        }
+    }
+
+    //Solution checking and post request Code
+
+    function post_req(name, time){
+        var form = document.getElementById('post-req')
+        var action_url = "/result/"+String(name)+"/"+String(time)
+        form.action = action_url
+        //form.children[0].value = name
+        //form.children[1].value = time
+        form.submit()
+    }
+
+    function change_action(){
+        var action_url = "http://localhost:8000/game/result/"+String(name)+"/"+String(time)
+        var form = document.getElementById('post-req')
+        form.action = action_url
+    }
+
+    function convert_board(board_template){
+        rows = []
+        for (let row_value = 0; row_value<9; row_value++){
+            row = []
+            for (let box_value = 0; box_value<3; box_value++){
+                for(let element_value = 0; element_value<3; element_value++){
+                    box = board_template[Math.floor(row_value/3)*3+box_value].children
+                    element = box[row_value%3*3+element_value].value
+                    row.push(parseInt(element))
+                }
+            }
+            rows.push(row)
+        }
+        return rows
+    }
+
+    function compare_and_modify_board(board, correct_values){
+        for (let row = 0; row<9; row++){
+            for(let element = 0; element<9; element++){
+                var value_to_check = board[row][element]
+
+                if(value_to_check != correct_values[row][element]){
+                   alert("Your solution is wrong!")
+                   return false
+                }
+
+            }
+        
+        alert("Your answer is correct! Check the leaderboard to see if you are there.")
+        return true
+    }
+}
+
+    result_board = {{check_board}}
+    console.log(result_board)
+    function check_board_result(board_template){
+        var board_rows = convert_board(board_template)
+        return compare_and_modify_board(board_rows, result_board)
+    }
+
+
+    
+
+</script>
