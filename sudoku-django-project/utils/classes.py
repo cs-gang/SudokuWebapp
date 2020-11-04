@@ -177,7 +177,7 @@ class Sudoku:
                 attempts -= 1
     
     @staticmethod
-    def check(self, user_input: list, full_board: list) -> typing.Union[bool, list]:
+    def check(user_input: list, full_board: list) -> typing.Union[bool, list]:
 
         if user_input == full_board:
             return True
