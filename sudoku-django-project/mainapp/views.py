@@ -49,10 +49,11 @@ def game(request: http.HttpRequest) -> http.HttpResponse:
 
 @require_POST
 def result(request: http.HttpRequest) -> http.HttpResponse:
+    
     form = AddToLeaderboardForm(request.POST)
-
-    time = form.cleaned_data['time']
-    username = form.cleaned_data['username']
+    if form.is_valid():
+        time = form.cleaned_data['time']
+        username = form.cleaned_data['username']
 
     current_worst = Leaderboard.objects.all().aggregate(Max('time'))
     if time < current_worst['time__max']:
