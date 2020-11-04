@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django import http
-from django.views.decorators.http import require_http_methods, require_GET
+from django.views.decorators.http import require_POST, require_GET
 from django.db.models import Max
 import json
 
 from utils.classes import BoardsQueue
 from utils.exceptions import QueueUnderflowError
-from .models import GameBoards, Leaderboard
 
+from .models import GameBoards, Leaderboard
+from .forms import AddToLeaderboardForm
 # queue initialization 
 queue = BoardsQueue()
 
@@ -46,14 +47,19 @@ def game(request: http.HttpRequest) -> http.HttpResponse:
     return render(request, "mainapp/game.html", context)
 
 
-@require_GET
-def result(request: http.HttpRequest, username: str, time: int) -> http.HttpResponse:
-        current_worst = Leaderboard.objects.all().aggregate(Max('time'))
-        if time < current_worst['time__max']:
-            new = Leaderboard(name=username, time=time)
-            new.save()
-        print(request.GET)
-        return redirect('index') 
+@require_POST
+def result(request: http.HttpRequest) -> http.HttpResponse:
+    form = AddToLeaderboardForm(request.POST)
+
+    time = form.cleaned_data['time']
+    username = form.cleaned_data['username']
+
+    current_worst = Leaderboard.objects.all().aggregate(Max('time'))
+    if time < current_worst['time__max']:
+        new = Leaderboard(name=username, time=time)
+        new.save()
+
+    return redirect('index') 
 
 def leaderboard(request: http.HttpRequest, home: str="") -> http.HttpResponse:
     if home == "lb":
