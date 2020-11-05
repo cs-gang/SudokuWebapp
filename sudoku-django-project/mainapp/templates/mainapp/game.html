@@ -10,9 +10,9 @@
 
     <body class="h-24 bg-gradient-to-b from-teal-300 to-blue-700">
 
-        <form id="post-req" class="absolute opacity-0" method="GET">
-            <input type="text" disabled name="username">
-            <input type="text" disabled name="time">
+        <form id="post-req" class="absolute opacity-0" action="/result" method="POST">
+            {% csrf_token %}
+            {{ form }}
             <input type="submit" value="Submit">
         </form>
 
@@ -134,9 +134,12 @@
                 <button id="Sudoku-button" onclick="SubmitHandle()" class="rounded-lg shadow-md
                 px-1 mx-10 md:mx-16 xl:mx-24 mt-2 lg:mt-4 text-sm lg:text-xl xl:text-2xl border-red-500 hover:border-white hover:bg-red-500 hover:text-white active:bg-red-700 border-2 focus:outline-none subfont-cumono">Submit</button>
             </div>
+
             <div class="grid grid-cols-2 gap-2">
-                <a href="#" class="shadow-md rounded-lg md:mt-1 lg:mb-2 md:py-1 text-center text-xs lg:text-lg border-blue-600 hover:border-white hover:bg-blue-600 hover:text-white active:bg-blue-800 border-2 subfont-ubmono">Home</a>
-                <a href="#" class="shadow-md rounded-lg md:mt-1 lg:mb-2 md:py-1 text-center text-xs lg:text-lg border-blue-600 hover:border-white hover:bg-blue-600 hover:text-white active:bg-blue-800 border-2 subfont-ubmono">LeaderBoard</a>
+                <!--/leaderboard/home is a redirect link that goes back to the home page-->
+                <a href="/leaderboard/home" class="shadow-md rounded-lg md:mt-1 lg:mb-2 md:py-1 text-center text-xs lg:text-lg border-blue-600 hover:border-white hover:bg-blue-600 hover:text-white active:bg-blue-800 border-2 subfont-ubmono">Home</a>
+                <a href="/leaderboard/lb" class="shadow-md rounded-lg md:mt-1 lg:mb-2 md:py-1 text-center text-xs lg:text-lg border-blue-600 hover:border-white hover:bg-blue-600 hover:text-white active:bg-blue-800 border-2 subfont-ubmono">LeaderBoard</a>
+
             </div>
             <div class="text-center">board id: {{board_id}}</div>
         </div>
@@ -146,6 +149,10 @@
 </html>
 
 <script>
+
+    var form = document.getElementById('post-req')
+    console.log(form.children)
+
     //Timer Code
     var name_text_holder = document.getElementById('name-getter')
     var name_text_button = document.getElementById('name-getter-button')
@@ -227,20 +234,13 @@
     }
 
     //Solution checking and post request Code
+    
 
     function post_req(name, time){
         var form = document.getElementById('post-req')
-        var action_url = "/result/"+String(name)+"/"+String(time)
-        form.action = action_url
-        //form.children[0].value = name
-        //form.children[1].value = time
+        form.children[2].value = name
+        form.children[4].value = time
         form.submit()
-    }
-
-    function change_action(){
-        var action_url = "http://localhost:8000/game/result/"+String(name)+"/"+String(time)
-        var form = document.getElementById('post-req')
-        form.action = action_url
     }
 
     function convert_board(board_template){
