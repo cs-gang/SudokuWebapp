@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django import http
-from django.views.decorators.http import require_http_methods, require_GET
+from django.views.decorators.http import require_POST, require_GET
 from django.db.models import Max
 import json
 
 from utils.classes import BoardsQueue
 from utils.exceptions import QueueUnderflowError
-from .models import GameBoards, Leaderboard
 
+from .models import GameBoards, Leaderboard
+from .forms import AddToLeaderboardForm
 # queue initialization 
 queue = BoardsQueue()
 
@@ -41,18 +42,22 @@ def game(request: http.HttpRequest) -> http.HttpResponse:
             lower, upper = upper, upper + 10
 
         board_id, game_board, check_board = queue.dequeue()
-    context = {'board_id': board_id, 'game_board': game_board, 'check_board': check_board}
+    context = {'board_id': board_id, 'game_board': game_board, 'check_board': check_board, 'form': AddToLeaderboardForm()}
     
     return render(request, "mainapp/game.html", context)
 
+def result(request: http.HttpRequest) -> http.HttpResponse:
+    if request.method == 'POST':
+        form = AddToLeaderboardForm(request.POST)
+        if form.is_valid():
+            time = form.cleaned_data['time']
+            username = form.cleaned_data['username']
 
-@require_GET
-def result(request: http.HttpRequest, username: str, time: int) -> http.HttpResponse:
         current_worst = Leaderboard.objects.all().aggregate(Max('time'))
         if time < current_worst['time__max']:
             new = Leaderboard(name=username, time=time)
             new.save()
-        print(request.GET)
+
         return redirect('index') 
 
 def leaderboard(request: http.HttpRequest, home: str="") -> http.HttpResponse:
