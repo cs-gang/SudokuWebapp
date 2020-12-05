@@ -9,7 +9,8 @@ from utils.exceptions import QueueUnderflowError
 
 from .models import GameBoards, Leaderboard
 from .forms import AddToLeaderboardForm
-# queue initialization 
+
+
 queue = BoardsQueue()
 
 lower, upper = 0, 11    # ID range to load to queue

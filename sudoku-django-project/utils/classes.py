@@ -290,7 +290,7 @@ class BoardsQueue:
     """FIFO queue containing upto {max_length} Sudoku boards at a time.
     Front of the queue is the index 0, and the back is -1.
     
-    Raises: QueueOverflowError -> on trying to insert into the queue beyong it's specified max_size
+    Raises: QueueOverflowError -> on trying to insert into the queue beyond it's specified max_size
             QueueUnderflowError -> on trying to get an item from the empty queue."""
     def __init__(self, max_size: int=10):   # noqa: ANN204
         self._queue = []

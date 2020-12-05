@@ -11,7 +11,9 @@ def get_connection_details() -> dict:
         a = f.readlines()
         a.pop(0)
         for line in a:
-            line = line.split("=")
+            line = line.strip().split("=")
+            key, value = map(str.strip, line)
+            details[key] = value
     return details
 
 def mock_leaderboard_values(cnx: sql.MySQLConnection) -> None:
@@ -19,7 +21,8 @@ def mock_leaderboard_values(cnx: sql.MySQLConnection) -> None:
         Leaderboard table is in the form:
             id - auto generated integer
             name - CHAR(20)
-            Time - INT in seconds"""
+            Time - INT in seconds.
+        All names in this is suffixed with the word `mock` so that they can be easily deleted."""
     cursor = cnx.cursor()
     test_values = [
         (None, "bruh_mock", 35),
@@ -55,15 +58,3 @@ def clean_leaderboard(cnx: sql.MySQLConnection, mock: bool = True) -> None:
 
     print(out)
     return 
-
-def make_game_boards(cnx: sql.MySQLConnection, max_boards: int = 100) -> None:
-    """Fill mainapp_gameboards table with sudoku boards prepared by the algorithm from classes.py"""
-    cursor = cnx.cursor()
-
-    for i in range(max_boards):
-        pass
-    # complete in next commit
-
-
-if __name__ == "__main__":
-    pass
