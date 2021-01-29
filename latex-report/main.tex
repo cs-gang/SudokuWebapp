@@ -7,6 +7,7 @@
 \usepackage{dirtree}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{hyperref}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
@@ -245,7 +246,9 @@ x % add only one name here
     \vspace{0.5cm}
     The \verb|SudokuWebapp| directory is the root of the repository, and contains the entire project.\\ Inside this, the \verb|sudoku-django-project| is the root of the \emph{Django project}, and is where all the code is held, while the \verb|latex-report| directory contains all the images and \LaTeX code used to make this report.\\
     The \verb|.gitignore| is a special file used by the Git SCM. All files that are meant to be ignored by the version-control system (and not committed to history) are included in this. \\
-    The \verb|sudoku-django-project\requirements.txt| is where all project dependencies are listed.
+    The \verb|sudoku-django-project/requirements.txt| is where all project dependencies are listed.\\
+    The entire source code of the project is hosted on our Github repository, and can be viewed at \url{https://www.github.com/cs-gang/sudokuwebapp}.
+    
     \subsubsection{Dependencies}
     \texttt{%
     asgiref==3.2.10 \\
