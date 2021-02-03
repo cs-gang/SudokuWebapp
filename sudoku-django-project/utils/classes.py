@@ -13,30 +13,13 @@ class Sudoku:
         self.mid_boxes = [_Box() for _ in range(3)]
         self.bottom_boxes = [_Box() for _ in range(3)]
 
-        self._set_box_locations()
-
-        self.original = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
-                         [4, 5, 6, 7, 8, 9, 1, 2, 3],
-                         [7, 8, 9, 1, 2, 3, 4, 5, 6],
-                         [2, 3, 1, 5, 6, 4, 8, 9, 7],
-                         [5, 6, 4, 8, 9, 7, 2, 3, 1],
-                         [8, 9, 7, 2, 3, 1, 5, 6, 4],
-                         [3, 1, 2, 6, 4, 5, 9, 7, 8],
-                         [6, 4, 5, 9, 7, 8, 3, 1, 2],
-                         [9, 7, 8, 3, 1, 2, 6, 4, 5]]
+        self.original = [[1, 2, 3, 4, 5, 6, 7, 8, 9],[4, 5, 6, 7, 8, 9, 1, 2, 3],[7, 8, 9, 1, 2, 3, 4, 5, 6],
+                         [2, 3, 1, 5, 6, 4, 8, 9, 7],[5, 6, 4, 8, 9, 7, 2, 3, 1],[8, 9, 7, 2, 3, 1, 5, 6, 4],
+                         [3, 1, 2, 6, 4, 5, 9, 7, 8],[6, 4, 5, 9, 7, 8, 3, 1, 2],[9, 7, 8, 3, 1, 2, 6, 4, 5]]
 
         self.generator()
         self.full_board = self.get_all_row_values()
         self.puzzle_maker()
-
-    # Methods run at initialization.
-    def _set_box_locations(self) -> None:  # Sets each of the box's position attribute.
-        for i in self.top_boxes:
-            i.box_pos = 'top'
-        for i in self.mid_boxes:
-            i.box_pos = 'mid'
-        for i in self.bottom_boxes:
-            i.box_pos = 'bottom'
 
     # Getter methods
     def get_column_values(self, index: int) -> list:  # returns column values in the form of
@@ -214,23 +197,6 @@ class _Box:
         self.top_row = [_Element() for _ in range(3)]
         self.mid_row = [_Element() for _ in range(3)]
         self.bottom_row = [_Element() for _ in range(3)]
-        self.box_pos = None  # NOT USED
-
-        self.set_element_box()
-        self.set_element_row()
-
-    # Methods run at initialization.
-    def set_element_box(self) -> None:  # Sets the box attribute of the element.
-        for element in self:
-            element._box = self
-
-    def set_element_row(self) -> None:  # Sets the row attribute of the element.
-        for element in self.top_row:
-            element._row = self.top_row
-        for element in self.mid_row:
-            element._row = self.mid_row
-        for element in self.bottom_row:
-            element._row = self.bottom_row
 
     # Operator overloading methods
     def __iter__(self):  # noqa: ANN204
@@ -266,22 +232,13 @@ class _Element:
     """ A class that acts as the element(number) in one of the boxes of sudoku. """
 
     def __init__(self, value: typing.Optional[int]=None):   # noqa: ANN204
-        self._box = None  # The box this element belongs to.   #NOT USED
-        self._row = None  # The row this element belongs to.   #NOT USED
         self._value = value  # The value the element has.
 
     # getter methods.
-    def get_box(self) -> typing.Any:  # To access the box this element belongs to.
-        return self._box
-
     def get_value(self) -> typing.Any:  # To access the value this element has.
         return self._value
 
-    def get_row(self) -> typing.Any:  # To access the row this element belongs to.
-        return self._row
-
-        # setter methods.
-
+    # setter methods.
     def set_value(self, value: typing.Union[int, None]) -> None:  # To access the value this element will have.
         self._value = value
 
