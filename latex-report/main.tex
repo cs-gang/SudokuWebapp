@@ -43,12 +43,12 @@
 \lstset{style=mystyle}
 
 \title{
-  \begin{huge}
+    \begin{huge}
     \textbf{
       {Computer Science Project 2020-'21}\\
       {Sudoku Web App}
     }\\
-  \end{huge}
+    \end{huge}
   \begin{figure}
       \centering
       {\includegraphics[scale=2]{iss}}
@@ -57,7 +57,6 @@
 \author{
 x % add only one name here
 }
-
 \date{\vspace{-5ex}}
 
 \begin{document}
@@ -73,10 +72,10 @@ x % add only one name here
   \maketitle
   \begin{large}
   \section*{Acknowledgements}
-  I have taken efforts in this project. However, it would not have been possible without the kind support and help of many individuals and organizations. I would like to extend my sincere thanks to all of them. \newline
+  This project would not have been possible without the kind support and help of many individuals and organizations. I would like to extend my sincere thanks to all of them. \newline
   \newline
-  I am greatly indebted to the teacher-in-charge, Ms.~Deepa Dinesh for her guidance and constant supervision as well as for providing necessary information 
-  regarding the project and also for her support in completing the project. \newline
+  I am greatly indebted to the teacher-in-charge, Ms.~Deepa Dinesh for her guidance, constant supervision and for providing necessary information 
+  regarding the project. \newline
   \newline
   I would like to express my gratitude towards my parents for their kind cooperation and encouragement which helped me in the completion of this project. \newline
   \newline
@@ -102,7 +101,7 @@ x % add only one name here
 
   Python's simple, easy to learn syntax emphasizes readability and therefore reduces the cost of program maintenance. Python supports modules and packages, which encourages program modularity and code reuse. The Python interpreter and the extensive standard library are available in source or binary form without charge for all major platforms, and can be freely distributed.
   
-  \subsection{Features in Python:}
+  \subsection{Features of Python}
     \subsubsection{Easy to code:}
     Python is a high-level programming language. Python is very easy to learn as compared to other languages like C, C#, JavaScript, Java, etc. It is very easy to code in python language and anybody can learn python basics in a few hours or days. It is also a developer-friendly language.
     
@@ -189,8 +188,8 @@ x % add only one name here
   \newpage
   \section{Hardware and Software}
     \subsection{Hardware}
-    Lenovo Ideapad \newline
-    \emph{Intel Core i5, 4GB RAM}
+    Dell G7\newline
+    \emph{Intel Core i7, 16 GB RAM}
     
     \subsection{Software}
     \begin{enumerate}
@@ -314,6 +313,7 @@ x % add only one name here
         \caption{Leaderboards Table}
         \label{fig:leaderboard}
     \end{figure}
+    \newpage
     \begin{lstlisting}[language=Python, caption=mainapp/models.py]
     from django.db import models
     from typing import Union
@@ -692,10 +692,10 @@ class BoardsQueue:
         
         return self._queue.pop(0)
     \end{lstlisting}
-    Some exceptions that are raised by the queue are defined in \texttt{utils/exceptions.py} file. These exceptions inherit from the base \code{Exception} class.
+    Some exceptions that are raised by the queue are defined in \texttt{utils/exceptions.py} file. These exceptions inherit from the base \code{Exception} class.\\
     \newline
     % add utils code here, for sudoku and queue
-    \textbf{URLconf}\\
+    \textbf{URLconf}\\\\
     URL configuration, or \textit{URLconf}, is the process of defining URLs for your app. This is done by writing some Python code, which acts as a mapping between URL path expressions, and their corresponding view functions.
     The URLconf for this project has two layers:
     \begin{enumerate}
