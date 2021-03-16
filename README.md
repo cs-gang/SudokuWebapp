@@ -9,3 +9,6 @@ A school project where we ~~make~~ made [a sudoku webapp](https://sudoku-webapp-
 - Google Cloud Platform (App Engine, Cloud SQL)
 - Tailwind CSS
 
+
+GGWP, successfully completed the project.
+(The links to the site may not work as it isn't hosted at the moment.)
